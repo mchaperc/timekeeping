@@ -1,0 +1,29 @@
+@black: #222222;
+@white: rgb(245,245,245);
+@gray: rgb(120,120,120);
+@light-gray: rgb(180,180,180);
+@very-light-gray: rgb(230,230,230);
+
+.nav {
+	padding-left: 5%;
+	padding-right: 5%;
+	height: 50px;
+	background-color: @black;
+	a {
+		color: @white;
+		&:hover {
+			color: @black;
+		}
+	}
+	img {
+		margin-top: 5px;
+		height: 40px;
+	}
+	.nav-branding-text {
+		margin-left: 1em;
+		vertical-align: middle;
+		font-family: 'Dancing Script', cursive;
+		font-size: 1.4em;
+		color: @very-light-gray;
+	}
+}

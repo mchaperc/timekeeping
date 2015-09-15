@@ -1,0 +1,47 @@
+.nav {
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 50px;
+  background-color: #222222;
+}
+.nav a {
+  color: #f5f5f5;
+}
+.nav a:hover {
+  color: #222222;
+}
+.nav img {
+  margin-top: 5px;
+  height: 40px;
+}
+.nav .nav-branding-text {
+  margin-left: 1em;
+  vertical-align: middle;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4em;
+  color: #e6e6e6;
+}
+
+.nav {
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 50px;
+  background-color: #222222;
+}
+.nav a {
+  color: #f5f5f5;
+}
+.nav a:hover {
+  color: #222222;
+}
+.nav img {
+  margin-top: 5px;
+  height: 40px;
+}
+.nav .nav-branding-text {
+  margin-left: 1em;
+  vertical-align: middle;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4em;
+  color: #e6e6e6;
+}

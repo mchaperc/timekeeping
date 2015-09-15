@@ -1,9 +1,10 @@
 define([
 		'marionette', 
 		'backbone',
-		'views/test'
+		'views/index-view',
+		'views/index-header'
 		],
-	function(Marionette, Backbone, TestView) {
+	function(Marionette, Backbone, IndexView, HeaderView) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
@@ -15,8 +16,9 @@ define([
 			},
 
 			index: function() {
-				var test = new TestView();
-				this.app.getRegion('main').show(test);
+				this.indexView = new IndexView();
+				this.app.getRegion('main').show(this.indexView);
+				this.indexView.showChildView('indexHeader', new HeaderView())
 			}
 
 		});

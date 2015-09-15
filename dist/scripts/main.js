@@ -2181,9 +2181,10 @@ var requirejs, require, define;
 define([
 		'marionette', 
 		'backbone',
-		'views/test'
+		'views/index-view',
+		'views/index-header'
 		],
-	function(Marionette, Backbone, TestView) {
+	function(Marionette, Backbone, IndexView, HeaderView) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
@@ -2195,11 +2196,53 @@ define([
 			},
 
 			index: function() {
-				var test = new TestView();
-				this.app.getRegion('main').show(test);
+				this.indexView = new IndexView();
+				this.app.getRegion('main').show(this.indexView);
+				this.indexView.showChildView('indexHeader', new HeaderView())
 			}
 
 		});
+	}
+)
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates'
+		],
+	function(Backbone, Marionette, dustMarionette, templates) {
+		return HeaderView = Marionette.ItemView.extend({
+			template: 'header-view.dust',
+			className: 'header-container'
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates',
+		],
+	function(Backbone, Marionette, dustMarionette, templates) {
+		return IndexView = Marionette.LayoutView.extend({
+			template: 'index-view.dust',
+			className: 'index-container',
+			regions: {
+				indexHeader: '.index-header',
+				indexFeatures: '.index-features',
+				indexFooter: '.index-footer'
+			}
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates'
+		],
+	function(Backbone, Marionette, dustMarionette, templates) {
+		return TestView = Marionette.ItemView.extend({
+			template: 'test.dust'
+		})
 	}
 )
 //# sourceMappingURL=main.js.map
