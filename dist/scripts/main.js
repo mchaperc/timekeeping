@@ -11,7 +11,8 @@ require.config({
 		dust: '../node_modules/dustjs-linkedin/dist/dust-core',
 		marionette: '../node_modules/backbone.marionette/lib/core/backbone.marionette',
 		'backbone.marionette.dust': '../node_modules/backbone.marionette.dust/src/backbone.marionette.dust',
-    main: 'main'
+		slick: '../node_modules/slick-carousel/slick/slick',
+    	main: 'main'
 	},
 	shim: {
 		'backbone': {
@@ -35,6 +36,9 @@ require.config({
 	    'templates': {
 	      deps: ['dust']
 	    },
+	    'slick': {
+	    	deps: ['jquery']
+	    }
 	},
   map: {
     '*': {'dust': 'dust'}
@@ -2182,9 +2186,10 @@ define([
 		'marionette', 
 		'backbone',
 		'views/index-view',
-		'views/index-header'
+		'views/index-header',
+		'views/index-features'
 		],
-	function(Marionette, Backbone, IndexView, HeaderView) {
+	function(Marionette, Backbone, IndexView, HeaderView, FeatureView) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
@@ -2198,12 +2203,37 @@ define([
 			index: function() {
 				this.indexView = new IndexView();
 				this.app.getRegion('main').show(this.indexView);
-				this.indexView.showChildView('indexHeader', new HeaderView())
+				this.indexView.showChildView('indexHeader', new HeaderView());
+				this.indexView.showChildView('indexFeatures', new FeatureView());
 			}
 
 		});
 	}
 )
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates',
+		'slick'
+		],
+	function(Backbone, Marionette, dustMarionette, templates, slick) {
+		return FeaturesView = Marionette.ItemView.extend({
+
+			template: 'features-view.dust',
+			className: 'features-container',
+
+			onRender: function() {
+				console.log($('.features-carousel'));
+				$(document).ready(function() {
+					$('.features-carousel').slick({
+						dots: true, 
+						variableWidth: true
+					});
+				});
+			}
+		})
+	})
 define([
 		'backbone',
 		'marionette',

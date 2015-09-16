@@ -1,0 +1,18 @@
+<h2 class="features-header">Features</h2>
+<div class="features-carousel">
+	<div class="features-carousel-slide">
+		<img src="assets/img/manage-time.png" alt="">
+		<h3>Manage Timekeeping</h3>
+		<p>Add tasks, create projects that can act as buckets for multiple tasks, and record time on tasks/projects.</p>
+	</div>
+	<div class="features-carousel-slide">
+		<img src="assets/img/time-off.png" alt="">
+		<h3>Paid Time Off</h3>
+		<p>View time taken, time remaining, and book time off.</p>
+	</div>
+	<div class="features-carousel-slide">
+		<img src="assets/img/reports.png" alt="">
+		<h3>Reports</h3>
+		<p>Visual representations of your projects, tasks, and time off. This allows for analysis of time spent on any category being tracked.</p>
+	</div>
+</div>

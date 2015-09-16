@@ -11,7 +11,8 @@ require.config({
 		dust: '../node_modules/dustjs-linkedin/dist/dust-core',
 		marionette: '../node_modules/backbone.marionette/lib/core/backbone.marionette',
 		'backbone.marionette.dust': '../node_modules/backbone.marionette.dust/src/backbone.marionette.dust',
-    main: 'main'
+		slick: '../node_modules/slick-carousel/slick/slick',
+    	main: 'main'
 	},
 	shim: {
 		'backbone': {
@@ -35,6 +36,9 @@ require.config({
 	    'templates': {
 	      deps: ['dust']
 	    },
+	    'slick': {
+	    	deps: ['jquery']
+	    }
 	},
   map: {
     '*': {'dust': 'dust'}
