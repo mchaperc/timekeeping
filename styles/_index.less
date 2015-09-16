@@ -1,7 +1,7 @@
 @black: rgb(50,50,50);
 @transparent-black: rgba(50,50,50,.4);
 @white: rgb(245,245,245);
-@transparent-white: rgba(245,245,245, .95);
+@transparent-white: rgba(245,245,245, .97);
 @dark-gray: rgb(80,80,80);
 @gray: rgb(120,120,120);
 @light-gray: rgb(180,180,180);
@@ -15,6 +15,7 @@
 
 * {
 	box-sizing: border-box;
+	outline: none;
 }
 
 .nav {
@@ -26,9 +27,6 @@
 	a {
 		color: @white;
 		&:hover, &:active {
-			color: @black;
-		}
-		.active {
 			color: @black;
 		}
 	}
@@ -44,6 +42,28 @@
 		color: @white;
 		span {
 			color: @neon-green;
+		}
+	}
+	.navbar-center {
+		left: 35%;
+		position: absolute;
+		width: 30%;
+	}
+	.nav-user {
+		float: right;
+		a {
+			display: inline-block;
+			margin-right: 2em;
+			color: @white;
+			&:hover, &:active {
+				color: @black;
+			}
+		}
+		img {
+			border-radius: 50px;
+			&:hover {
+				cursor: pointer;
+			}
 		}
 	}
 }
@@ -144,9 +164,9 @@
 	text-align: center;
 	width: 400px;
 	.features-carousel-slide {
+		margin: 1em;
 		background-color: @black;
-		border: 1px solid @light-gray;
-		border-radius: 10px;
+		// border-radius: 10px;
 		color: @white;
 		.slide-content-container {
 			position: absolute;
