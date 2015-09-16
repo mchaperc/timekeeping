@@ -52,6 +52,7 @@
 .modal-container .login-modal-header-container,
 .modal-container .register-modal-header-container,
 .modal-container .about-modal-header-container {
+  padding: 1em;
   text-align: center;
 }
 .modal-container .nav-branding-text {
@@ -144,6 +145,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
   padding: 1em;
   width: 400px;
 }
@@ -235,6 +237,7 @@
 .modal-container .login-modal-header-container,
 .modal-container .register-modal-header-container,
 .modal-container .about-modal-header-container {
+  padding: 1em;
   text-align: center;
 }
 .modal-container .nav-branding-text {
@@ -327,6 +330,7 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
   padding: 1em;
   width: 400px;
 }
