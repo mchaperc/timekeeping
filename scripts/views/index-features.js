@@ -12,7 +12,6 @@ define([
 			className: 'features-container',
 
 			onRender: function() {
-				console.log($('.features-carousel'));
 				$(document).ready(function() {
 					$('.features-carousel').slick({
 						dots: true, 

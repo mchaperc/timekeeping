@@ -1,13 +1,17 @@
 @black: rgb(50,50,50);
+@transparent-black: rgba(50,50,50,.4);
 @white: rgb(245,245,245);
+@transparent-white: rgba(245,245,245, .95);
 @dark-gray: rgb(80,80,80);
 @gray: rgb(120,120,120);
 @light-gray: rgb(180,180,180);
 @very-light-gray: rgb(230,230,230);
+@border-gray: #D8D8D8;
 @light-green: #7AC143;
 @neon-green: #00FF00;
 @orange: #FF6600;
-@blue: #000066;
+@blue: rgb(0,119,200);
+@dark-blue: rgb(0,100,180);
 
 * {
 	box-sizing: border-box;
@@ -21,7 +25,10 @@
 	background: linear-gradient(@dark-gray,@black);
 	a {
 		color: @white;
-		&:hover {
+		&:hover, &:active {
+			color: @black;
+		}
+		.active {
 			color: @black;
 		}
 	}
@@ -46,15 +53,94 @@
 	max-width: 100%;
 }
 
+.modal {
+	display: none;
+}
+
+.modal-container {
+	position: absolute;
+	top: 20vh;
+	left: 20%;
+	background-color: @transparent-white;
+	box-shadow: 0 0 5px @transparent-black;
+	color: @black;
+	height: 60vh;
+	width: 60%;
+	.login-modal-header-container {
+		text-align: center;
+	}
+	.nav-branding-text {
+		font-family: 'Dancing Script', cursive;
+		font-size: 1.2em;
+		span {
+			color: @orange;
+		}
+	}
+}
+
+.login-modal-form {
+	margin-top: 3em;
+	float: left;
+	width: 50%;
+	padding: 0 3em 0 3em;
+	border-right: 2px solid @light-gray;
+	font-size: 1.2em;
+	input, label {
+		display: block;
+	}
+	label {
+		font-weight: 300;
+	}
+	input {
+		margin-bottom: 1em;
+		width: 100%;
+		border: 1px solid @border-gray;
+		border-radius: 5px;
+		font-size: 1.2em;
+		padding: .3em;
+	}
+	button {
+		background-color: @blue;
+		border: none;
+		color: @white;
+		font-size: 1.2em;
+		padding: .5em;
+		width: 50%;
+		&:hover, &:active {
+			background-color: @dark-blue;
+		}
+	}
+}
+
+.login-modal-help {
+	float: right;
+	margin-top: 3em;
+	margin-right: 8em;
+	a {
+		display: block;
+	}
+}
+
+.fa-close {
+	position: absolute;
+	right: 2%;
+	top: 3%;
+	&:hover {
+		color: @orange;
+		cursor: pointer;
+	}
+}
+
 .index-features {
 	color: @black;
 	margin: auto;
+	padding-top: 2em;
 	text-align: center;
 	width: 400px;
 	.features-carousel-slide {
 		background-color: @black;
 		border: 1px solid @light-gray;
-		border-radius: 5px;
+		border-radius: 10px;
 		color: @white;
 		.slide-content-container {
 			position: absolute;
@@ -96,7 +182,6 @@
 		transition: all .1s linear;
 		&:hover {
 			color: @neon-green;
-			transform: scale(1.2);
 		}
 	}
 }
