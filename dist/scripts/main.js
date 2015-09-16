@@ -2244,7 +2244,24 @@ define([
 	function(Backbone, Marionette, dustMarionette, templates) {
 		return FooterView = Marionette.ItemView.extend({
 			template: 'footer-view.dust',
-			className: 'footer-container'
+			className: 'footer-container',
+			
+			events: {
+				'click .fa-user': 'loginModal',
+				'click .fa-user-plus': 'registerModal'
+			},
+			loadModal: function(modal) {
+				$('.' + modal.toLowerCase() + '-modal').fadeIn();
+				console.log(modal.toLowerCase());
+			},
+			loginModal: function() {
+				$('.modal').hide();
+				this.loadModal('login');
+			},
+			registerModal: function() {
+				$('.modal').hide();
+				this.loadModal('register');
+			}
 		})
 	})
 define([
@@ -2259,11 +2276,14 @@ define([
 			className: 'header-container',
 			events: {
 				'click .nav-item': 'showModal',
-				'click .exit-modal': 'hideModal'
+				'click .exit-modal': 'hideModal',
+				'click .fa-user': 'loginModal',
+				'click .fa-user-plus': 'registerModal'
 			},
 			showModal: function(e) {
 				e.preventDefault();
 				var modal = e.target.innerHTML;
+				$('.modal').hide();
 				this.loadModal(modal);
 			},
 			loadModal: function(modal) {

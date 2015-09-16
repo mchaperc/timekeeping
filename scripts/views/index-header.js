@@ -10,11 +10,14 @@ define([
 			className: 'header-container',
 			events: {
 				'click .nav-item': 'showModal',
-				'click .exit-modal': 'hideModal'
+				'click .exit-modal': 'hideModal',
+				'click .fa-user': 'loginModal',
+				'click .fa-user-plus': 'registerModal'
 			},
 			showModal: function(e) {
 				e.preventDefault();
 				var modal = e.target.innerHTML;
+				$('.modal').hide();
 				this.loadModal(modal);
 			},
 			loadModal: function(modal) {

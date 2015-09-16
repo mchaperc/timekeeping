@@ -49,7 +49,9 @@
   height: 60vh;
   width: 60%;
 }
-.modal-container .login-modal-header-container {
+.modal-container .login-modal-header-container,
+.modal-container .register-modal-header-container,
+.modal-container .about-modal-header-container {
   text-align: center;
 }
 .modal-container .nav-branding-text {
@@ -59,8 +61,9 @@
 .modal-container .nav-branding-text span {
   color: #ff6600;
 }
-.login-modal-form {
-  margin-top: 3em;
+.login-modal-form,
+.register-modal-form {
+  margin-top: 2em;
   float: left;
   width: 50%;
   padding: 0 3em 0 3em;
@@ -68,13 +71,17 @@
   font-size: 1.2em;
 }
 .login-modal-form input,
-.login-modal-form label {
+.register-modal-form input,
+.login-modal-form label,
+.register-modal-form label {
   display: block;
 }
-.login-modal-form label {
+.login-modal-form label,
+.register-modal-form label {
   font-weight: 300;
 }
-.login-modal-form input {
+.login-modal-form input,
+.register-modal-form input {
   margin-bottom: 1em;
   width: 100%;
   border: 1px solid #d8d8d8;
@@ -82,7 +89,8 @@
   font-size: 1.2em;
   padding: .3em;
 }
-.login-modal-form button {
+.login-modal-form button,
+.register-modal-form button {
   background-color: #0077c8;
   border: none;
   color: #f5f5f5;
@@ -91,16 +99,24 @@
   width: 50%;
 }
 .login-modal-form button:hover,
-.login-modal-form button:active {
+.register-modal-form button:hover,
+.login-modal-form button:active,
+.register-modal-form button:active {
   background-color: #0064b4;
 }
-.login-modal-help {
+.login-modal-help,
+.register-modal-help {
   float: right;
-  margin-top: 3em;
+  margin-top: 2em;
   margin-right: 8em;
 }
-.login-modal-help a {
+.login-modal-help a,
+.register-modal-help a {
   display: block;
+}
+.about-modal-help {
+  margin: 3em auto;
+  width: 60%;
 }
 .fa-close {
   position: absolute;
@@ -216,7 +232,9 @@
   height: 60vh;
   width: 60%;
 }
-.modal-container .login-modal-header-container {
+.modal-container .login-modal-header-container,
+.modal-container .register-modal-header-container,
+.modal-container .about-modal-header-container {
   text-align: center;
 }
 .modal-container .nav-branding-text {
@@ -226,8 +244,9 @@
 .modal-container .nav-branding-text span {
   color: #ff6600;
 }
-.login-modal-form {
-  margin-top: 3em;
+.login-modal-form,
+.register-modal-form {
+  margin-top: 2em;
   float: left;
   width: 50%;
   padding: 0 3em 0 3em;
@@ -235,13 +254,17 @@
   font-size: 1.2em;
 }
 .login-modal-form input,
-.login-modal-form label {
+.register-modal-form input,
+.login-modal-form label,
+.register-modal-form label {
   display: block;
 }
-.login-modal-form label {
+.login-modal-form label,
+.register-modal-form label {
   font-weight: 300;
 }
-.login-modal-form input {
+.login-modal-form input,
+.register-modal-form input {
   margin-bottom: 1em;
   width: 100%;
   border: 1px solid #d8d8d8;
@@ -249,7 +272,8 @@
   font-size: 1.2em;
   padding: .3em;
 }
-.login-modal-form button {
+.login-modal-form button,
+.register-modal-form button {
   background-color: #0077c8;
   border: none;
   color: #f5f5f5;
@@ -258,16 +282,24 @@
   width: 50%;
 }
 .login-modal-form button:hover,
-.login-modal-form button:active {
+.register-modal-form button:hover,
+.login-modal-form button:active,
+.register-modal-form button:active {
   background-color: #0064b4;
 }
-.login-modal-help {
+.login-modal-help,
+.register-modal-help {
   float: right;
-  margin-top: 3em;
+  margin-top: 2em;
   margin-right: 8em;
 }
-.login-modal-help a {
+.login-modal-help a,
+.register-modal-help a {
   display: block;
+}
+.about-modal-help {
+  margin: 3em auto;
+  width: 60%;
 }
 .fa-close {
   position: absolute;

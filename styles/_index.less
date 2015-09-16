@@ -66,7 +66,7 @@
 	color: @black;
 	height: 60vh;
 	width: 60%;
-	.login-modal-header-container {
+	.login-modal-header-container, .register-modal-header-container, .about-modal-header-container {
 		text-align: center;
 	}
 	.nav-branding-text {
@@ -78,8 +78,8 @@
 	}
 }
 
-.login-modal-form {
-	margin-top: 3em;
+.login-modal-form, .register-modal-form {
+	margin-top: 2em;
 	float: left;
 	width: 50%;
 	padding: 0 3em 0 3em;
@@ -112,13 +112,18 @@
 	}
 }
 
-.login-modal-help {
+.login-modal-help, .register-modal-help {
 	float: right;
-	margin-top: 3em;
+	margin-top: 2em;
 	margin-right: 8em;
 	a {
 		display: block;
 	}
+}
+
+.about-modal-help {
+	margin: 3em auto;
+	width: 60%;
 }
 
 .fa-close {
