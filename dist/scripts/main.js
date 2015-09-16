@@ -2187,9 +2187,10 @@ define([
 		'backbone',
 		'views/index-view',
 		'views/index-header',
-		'views/index-features'
+		'views/index-features',
+		'views/index-footer'
 		],
-	function(Marionette, Backbone, IndexView, HeaderView, FeatureView) {
+	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
@@ -2205,6 +2206,7 @@ define([
 				this.app.getRegion('main').show(this.indexView);
 				this.indexView.showChildView('indexHeader', new HeaderView());
 				this.indexView.showChildView('indexFeatures', new FeatureView());
+				this.indexView.showChildView('indexFooter', new FooterView());
 			}
 
 		});
@@ -2232,6 +2234,18 @@ define([
 					});
 				});
 			}
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates'
+		],
+	function(Backbone, Marionette, dustMarionette, templates) {
+		return FooterView = Marionette.ItemView.extend({
+			template: 'footer-view.dust',
+			className: 'footer-container'
 		})
 	})
 define([

@@ -1,7 +1,7 @@
 <div class="nav">
 	<div class="nav-branding col-xs-3">
 		<img src="assets/img/clock.png" alt="" class="nav-branding-icon">
-		<span class="nav-branding-text">It's about time...</span>
+		<span class="nav-branding-text">It's about <span>time...</span></span>
 	</div>
 	<ul class="nav navbar-nav navbar-inverse navbar-right">
 		<li class="nav-item"><a href="#">About</a></li>

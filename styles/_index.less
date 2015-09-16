@@ -1,8 +1,13 @@
 @black: rgb(50,50,50);
 @white: rgb(245,245,245);
+@dark-gray: rgb(80,80,80);
 @gray: rgb(120,120,120);
 @light-gray: rgb(180,180,180);
 @very-light-gray: rgb(230,230,230);
+@light-green: #7AC143;
+@neon-green: #00FF00;
+@orange: #FF6600;
+@blue: #000066;
 
 * {
 	box-sizing: border-box;
@@ -12,7 +17,8 @@
 	padding-left: 5%;
 	padding-right: 5%;
 	height: 50px;
-	background-color: @black;
+	line-height: 50px;
+	background: linear-gradient(@dark-gray,@black);
 	a {
 		color: @white;
 		&:hover {
@@ -22,13 +28,16 @@
 	img {
 		margin-top: 5px;
 		height: 40px;
+		vertical-align: top;
 	}
 	.nav-branding-text {
 		margin-left: 1em;
-		vertical-align: middle;
 		font-family: 'Dancing Script', cursive;
-		font-size: 1.4em;
+		font-size: 2em;
 		color: @white;
+		span {
+			color: @neon-green;
+		}
 	}
 }
 
@@ -38,15 +47,22 @@
 }
 
 .index-features {
+	color: @black;
 	margin: auto;
 	text-align: center;
 	width: 400px;
 	.features-carousel-slide {
-		padding: 1em;
 		background-color: @black;
 		border: 1px solid @light-gray;
 		border-radius: 5px;
 		color: @white;
+		.slide-content-container {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			padding: 1em;
+			width: 400px;
+		}
 		img {
 			margin: auto;
 			height: 100px;
@@ -56,10 +72,31 @@
 	}
 	.slick-slide {
 		margin: auto;
+		height: 300px;
 		width: 400px;
 	}
 }
+
 .slick-prev:before, .slick-next:before{
     color: @black;
-    // top: -55px;
+}
+
+.footer-container {
+	position: absolute;
+	bottom: 0;
+	height: 50px;
+	width: 100%;
+	background: linear-gradient(@black,@dark-gray);
+	color: @white;
+	font-size: 2em;
+	line-height: 50px;
+	text-align: center;
+	i {
+		color: @white;
+		transition: all .1s linear;
+		&:hover {
+			color: @neon-green;
+			transform: scale(1.2);
+		}
+	}
 }

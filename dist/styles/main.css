@@ -5,7 +5,8 @@
   padding-left: 5%;
   padding-right: 5%;
   height: 50px;
-  background-color: #323232;
+  line-height: 50px;
+  background: linear-gradient(#505050, #323232);
 }
 .nav a {
   color: #f5f5f5;
@@ -16,29 +17,39 @@
 .nav img {
   margin-top: 5px;
   height: 40px;
+  vertical-align: top;
 }
 .nav .nav-branding-text {
   margin-left: 1em;
-  vertical-align: middle;
   font-family: 'Dancing Script', cursive;
-  font-size: 1.4em;
+  font-size: 2em;
   color: #f5f5f5;
+}
+.nav .nav-branding-text span {
+  color: #00ff00;
 }
 .masthead img {
   height: 600px;
   max-width: 100%;
 }
 .index-features {
+  color: #323232;
   margin: auto;
   text-align: center;
   width: 400px;
 }
 .index-features .features-carousel-slide {
-  padding: 1em;
   background-color: #323232;
   border: 1px solid #b4b4b4;
   border-radius: 5px;
   color: #f5f5f5;
+}
+.index-features .features-carousel-slide .slide-content-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 1em;
+  width: 400px;
 }
 .index-features .features-carousel-slide img {
   margin: auto;
@@ -48,11 +59,31 @@
 }
 .index-features .slick-slide {
   margin: auto;
+  height: 300px;
   width: 400px;
 }
 .slick-prev:before,
 .slick-next:before {
   color: #323232;
+}
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  background: linear-gradient(#323232, #505050);
+  color: #f5f5f5;
+  font-size: 2em;
+  line-height: 50px;
+  text-align: center;
+}
+.footer-container i {
+  color: #f5f5f5;
+  transition: all .1s linear;
+}
+.footer-container i:hover {
+  color: #00ff00;
+  transform: scale(1.2);
 }
 
 * {
@@ -62,7 +93,8 @@
   padding-left: 5%;
   padding-right: 5%;
   height: 50px;
-  background-color: #323232;
+  line-height: 50px;
+  background: linear-gradient(#505050, #323232);
 }
 .nav a {
   color: #f5f5f5;
@@ -73,29 +105,39 @@
 .nav img {
   margin-top: 5px;
   height: 40px;
+  vertical-align: top;
 }
 .nav .nav-branding-text {
   margin-left: 1em;
-  vertical-align: middle;
   font-family: 'Dancing Script', cursive;
-  font-size: 1.4em;
+  font-size: 2em;
   color: #f5f5f5;
+}
+.nav .nav-branding-text span {
+  color: #00ff00;
 }
 .masthead img {
   height: 600px;
   max-width: 100%;
 }
 .index-features {
+  color: #323232;
   margin: auto;
   text-align: center;
   width: 400px;
 }
 .index-features .features-carousel-slide {
-  padding: 1em;
   background-color: #323232;
   border: 1px solid #b4b4b4;
   border-radius: 5px;
   color: #f5f5f5;
+}
+.index-features .features-carousel-slide .slide-content-container {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 1em;
+  width: 400px;
 }
 .index-features .features-carousel-slide img {
   margin: auto;
@@ -105,9 +147,29 @@
 }
 .index-features .slick-slide {
   margin: auto;
+  height: 300px;
   width: 400px;
 }
 .slick-prev:before,
 .slick-next:before {
   color: #323232;
+}
+.footer-container {
+  position: absolute;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  background: linear-gradient(#323232, #505050);
+  color: #f5f5f5;
+  font-size: 2em;
+  line-height: 50px;
+  text-align: center;
+}
+.footer-container i {
+  color: #f5f5f5;
+  transition: all .1s linear;
+}
+.footer-container i:hover {
+  color: #00ff00;
+  transform: scale(1.2);
 }
