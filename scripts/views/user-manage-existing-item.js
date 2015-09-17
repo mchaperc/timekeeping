@@ -49,7 +49,7 @@ define([
 			recordTime: function(e) {
 				e.preventDefault();
 				var self = this;
-				if(!this.model.get('running')) {
+				if(!self.running) {
 					self.interval = setInterval(function() {
 						var time = self.model.get('time');
 						time = time.toString().split(':');
@@ -72,13 +72,13 @@ define([
 						self.model.set('time', time.join(':'));
 						self.model.save();
 					}, 1000);
-					this.model.set('running', true);
+					self.running = true;
 				}
 			},
 
 			pauseTime: function(e) {
 				e.preventDefault();
-				this.model.set('running', false);
+				this.running = false;
 				clearInterval(this.interval);
 			},
 
