@@ -9,7 +9,8 @@ define([
 			defaults: {
 				task: 'N/A',
 				project: 'N/A',
-				time: '00:00:00'
+				time: '00:00:00',
+				running: false
 			}
 		})
 })

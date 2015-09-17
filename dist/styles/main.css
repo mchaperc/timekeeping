@@ -287,9 +287,6 @@
 .existing-tasks-collection .existing-item-container .record-time:active {
   color: #7ac143;
 }
-.existing-tasks-collection .existing-item-container .pause-time {
-  display: none;
-}
 .existing-tasks-collection .existing-item-container .pause-time:hover,
 .existing-tasks-collection .existing-item-container .pause-time:active {
   color: #0077c8;
@@ -667,9 +664,6 @@
 .existing-tasks-collection .existing-item-container .record-time:hover,
 .existing-tasks-collection .existing-item-container .record-time:active {
   color: #7ac143;
-}
-.existing-tasks-collection .existing-item-container .pause-time {
-  display: none;
 }
 .existing-tasks-collection .existing-item-container .pause-time:hover,
 .existing-tasks-collection .existing-item-container .pause-time:active {

@@ -48,16 +48,40 @@ define([
 
 			recordTime: function(e) {
 				e.preventDefault();
-				this.$('.record-time').hide();
-				this.$('.pause-time').show();
+				var self = this;
+				if(!this.model.get('running')) {
+					self.interval = setInterval(function() {
+						var time = self.model.get('time');
+						time = time.toString().split(':');
+						time[2] = Number(time[2]) + 1;
+						if (time[2] === 60) {
+							time[2] = '00';
+							time[1] = Number(time[1]) + 1;
+							if (time[1] === 60) {
+								time[1] = '00';
+								time[0] = Number(time[0]) + 1;
+							}
+						}
+						time = _.map(time, function(item) {
+							if (Number(item) < 10) {
+								return ('0' + item).slice(-2);
+							} else {
+								return item;
+							}
+						})
+						self.model.set('time', time.join(':'));
+						self.model.save();
+					}, 1000);
+					this.model.set('running', true);
+				}
 			},
 
 			pauseTime: function(e) {
 				e.preventDefault();
-				this.$('.pause-time').hide();
-				this.$('.record-time').show();
-			}
-,
+				this.model.set('running', false);
+				clearInterval(this.interval);
+			},
+
 			saveChanges: function(e) {
 				e.preventDefault();
 				var taskName = this.$('input.task-item-task').val() || this.model.get('task');

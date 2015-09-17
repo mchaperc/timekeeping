@@ -18,7 +18,7 @@
 	<i class="fa fa-pause pause-time" title="Pause Record"></i>
 	<div class="edit edit-buttons">
 		<button class="save-changes">Save</button>
-		<button class="cancel-changes$(">Cancel</button>
+		<button class="cancel-changes">Cancel</button>
 	</div>
 </form>
 
