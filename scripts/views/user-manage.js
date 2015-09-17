@@ -16,9 +16,11 @@ define([
 				manageTasks: '.existing-tasks-container'
 			},
 			onRender: function() {
-				this.showChildView('manageNew', new NewTask());
-				var tasks = new Backbone.Collection(TasksCollection)
-				this.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
+				var tasks = new TasksCollection();
+				tasks.fetch().then(function(response) {
+					this.showChildView('manageNew', new NewTask({collection: tasks}));
+					this.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
+				}.bind(this));
 			}
 		})
 	})

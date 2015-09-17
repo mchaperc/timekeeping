@@ -15,8 +15,17 @@
 	<i class="fa fa-pencil edit-item" title="Edit Task"></i>
 	<i class="fa fa-close delete-item" title="Delete Task"></i>
 	<i class="fa fa-play-circle record-time" title="Record Time"></i>
+	<i class="fa fa-pause pause-time" title="Pause Record"></i>
 	<div class="edit edit-buttons">
 		<button class="save-changes">Save</button>
-		<button class="cancel">Cancel</button>
+		<button class="cancel-changes$(">Cancel</button>
 	</div>
 </form>
+
+<div class="delete-confirm">
+	<div class="delete-confirm-text">
+		<p class="confirm-delete-text">Confirm deletion of task:</p>
+		<button class="delete-confirm-confirm">Confirm</button>
+		<button class="delete-confirm-cancel">Cancel</button>
+	</div>
+</div>

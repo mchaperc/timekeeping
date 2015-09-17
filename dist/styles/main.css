@@ -221,6 +221,7 @@
   border: none;
   border-bottom: 2px solid #0077c8;
   font-size: 1.1em;
+  padding: .2em;
   width: 90%;
 }
 .new-container .new-task-form .new-task-input-container label {
@@ -253,9 +254,13 @@
   margin-right: 2em;
   font-size: .7em;
 }
+.existing-tasks-collection .existing-item-container .task-item-time {
+  text-align: center;
+}
 .existing-tasks-collection .existing-item-container .edit-item,
 .existing-tasks-collection .existing-item-container .delete-item,
-.existing-tasks-collection .existing-item-container .record-time {
+.existing-tasks-collection .existing-item-container .record-time,
+.existing-tasks-collection .existing-item-container .pause-time {
   margin-right: .7em;
   vertical-align: middle;
   font-size: 1.5em;
@@ -263,9 +268,11 @@
 .existing-tasks-collection .existing-item-container .edit-item:hover,
 .existing-tasks-collection .existing-item-container .delete-item:hover,
 .existing-tasks-collection .existing-item-container .record-time:hover,
+.existing-tasks-collection .existing-item-container .pause-time:hover,
 .existing-tasks-collection .existing-item-container .edit-item:active,
 .existing-tasks-collection .existing-item-container .delete-item:active,
-.existing-tasks-collection .existing-item-container .record-time:active {
+.existing-tasks-collection .existing-item-container .record-time:active,
+.existing-tasks-collection .existing-item-container .pause-time:active {
   cursor: pointer;
 }
 .existing-tasks-collection .existing-item-container .edit-item:hover,
@@ -279,6 +286,13 @@
 .existing-tasks-collection .existing-item-container .record-time:hover,
 .existing-tasks-collection .existing-item-container .record-time:active {
   color: #7ac143;
+}
+.existing-tasks-collection .existing-item-container .pause-time {
+  display: none;
+}
+.existing-tasks-collection .existing-item-container .pause-time:hover,
+.existing-tasks-collection .existing-item-container .pause-time:active {
+  color: #0077c8;
 }
 .existing-tasks-collection .existing-item-container .task-item-partial-container {
   margin-right: 2em;
@@ -317,15 +331,52 @@
 .existing-tasks-collection .existing-item-container .edit-buttons button.save-changes:active {
   background-color: #66ad2f;
 }
-.existing-tasks-collection .existing-item-container .edit-buttons button.cancel {
+.existing-tasks-collection .existing-item-container .edit-buttons button.cancel-changes {
   padding: .5em 1em;
   background-color: #787878;
   border: none;
   color: #fafafa;
 }
-.existing-tasks-collection .existing-item-container .edit-buttons button.cancel:hover,
-.existing-tasks-collection .existing-item-container .edit-buttons button.cancel:active {
+.existing-tasks-collection .existing-item-container .edit-buttons button.cancel-changes:hover,
+.existing-tasks-collection .existing-item-container .edit-buttons button.cancel-changes:active {
   background-color: #505050;
+}
+.delete-confirm {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  height: 30vh;
+  width: 30%;
+  background-color: rgba(120, 120, 120, 0.9);
+  color: #fafafa;
+}
+.delete-confirm .delete-confirm-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 100%;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-confirm {
+  background-color: #7ac143;
+  border: 0;
+  margin-right: 1em;
+  margin-top: 1em;
+  padding: .5em;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-confirm:hover {
+  background-color: #66ad2f;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-cancel {
+  background-color: #e6e6e6;
+  border: none;
+  color: #505050;
+  padding: .5em;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-cancel:hover {
+  background-color: #b4b4b4;
+  color: #fafafa;
 }
 
 * {
@@ -551,6 +602,7 @@
   border: none;
   border-bottom: 2px solid #0077c8;
   font-size: 1.1em;
+  padding: .2em;
   width: 90%;
 }
 .new-container .new-task-form .new-task-input-container label {
@@ -583,9 +635,13 @@
   margin-right: 2em;
   font-size: .7em;
 }
+.existing-tasks-collection .existing-item-container .task-item-time {
+  text-align: center;
+}
 .existing-tasks-collection .existing-item-container .edit-item,
 .existing-tasks-collection .existing-item-container .delete-item,
-.existing-tasks-collection .existing-item-container .record-time {
+.existing-tasks-collection .existing-item-container .record-time,
+.existing-tasks-collection .existing-item-container .pause-time {
   margin-right: .7em;
   vertical-align: middle;
   font-size: 1.5em;
@@ -593,9 +649,11 @@
 .existing-tasks-collection .existing-item-container .edit-item:hover,
 .existing-tasks-collection .existing-item-container .delete-item:hover,
 .existing-tasks-collection .existing-item-container .record-time:hover,
+.existing-tasks-collection .existing-item-container .pause-time:hover,
 .existing-tasks-collection .existing-item-container .edit-item:active,
 .existing-tasks-collection .existing-item-container .delete-item:active,
-.existing-tasks-collection .existing-item-container .record-time:active {
+.existing-tasks-collection .existing-item-container .record-time:active,
+.existing-tasks-collection .existing-item-container .pause-time:active {
   cursor: pointer;
 }
 .existing-tasks-collection .existing-item-container .edit-item:hover,
@@ -609,6 +667,13 @@
 .existing-tasks-collection .existing-item-container .record-time:hover,
 .existing-tasks-collection .existing-item-container .record-time:active {
   color: #7ac143;
+}
+.existing-tasks-collection .existing-item-container .pause-time {
+  display: none;
+}
+.existing-tasks-collection .existing-item-container .pause-time:hover,
+.existing-tasks-collection .existing-item-container .pause-time:active {
+  color: #0077c8;
 }
 .existing-tasks-collection .existing-item-container .task-item-partial-container {
   margin-right: 2em;
@@ -647,13 +712,50 @@
 .existing-tasks-collection .existing-item-container .edit-buttons button.save-changes:active {
   background-color: #66ad2f;
 }
-.existing-tasks-collection .existing-item-container .edit-buttons button.cancel {
+.existing-tasks-collection .existing-item-container .edit-buttons button.cancel-changes {
   padding: .5em 1em;
   background-color: #787878;
   border: none;
   color: #fafafa;
 }
-.existing-tasks-collection .existing-item-container .edit-buttons button.cancel:hover,
-.existing-tasks-collection .existing-item-container .edit-buttons button.cancel:active {
+.existing-tasks-collection .existing-item-container .edit-buttons button.cancel-changes:hover,
+.existing-tasks-collection .existing-item-container .edit-buttons button.cancel-changes:active {
   background-color: #505050;
+}
+.delete-confirm {
+  display: none;
+  position: fixed;
+  top: 30%;
+  left: 35%;
+  height: 30vh;
+  width: 30%;
+  background-color: rgba(120, 120, 120, 0.9);
+  color: #fafafa;
+}
+.delete-confirm .delete-confirm-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 100%;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-confirm {
+  background-color: #7ac143;
+  border: 0;
+  margin-right: 1em;
+  margin-top: 1em;
+  padding: .5em;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-confirm:hover {
+  background-color: #66ad2f;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-cancel {
+  background-color: #e6e6e6;
+  border: none;
+  color: #505050;
+  padding: .5em;
+}
+.delete-confirm .delete-confirm-text .delete-confirm-cancel:hover {
+  background-color: #b4b4b4;
+  color: #fafafa;
 }
