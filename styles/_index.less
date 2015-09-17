@@ -1,13 +1,14 @@
 @black: rgb(50,50,50);
 @transparent-black: rgba(50,50,50,.4);
-@white: rgb(245,245,245);
+@white: rgb(250,250,250);
 @transparent-white: rgba(245,245,245, .97);
 @dark-gray: rgb(80,80,80);
 @gray: rgb(120,120,120);
 @light-gray: rgb(180,180,180);
 @very-light-gray: rgb(230,230,230);
 @border-gray: #D8D8D8;
-@light-green: #7AC143;
+@green: rgb(102,173,47);
+@light-green: rgb(122,193,67);
 @neon-green: #00FF00;
 @orange: #FF6600;
 @blue: rgb(0,119,200);
@@ -55,9 +56,6 @@
 			display: inline-block;
 			margin-right: 2em;
 			color: @white;
-			&:hover, &:active {
-				color: @black;
-			}
 		}
 		img {
 			border-radius: 50px;
@@ -75,11 +73,20 @@
 
 .modal {
 	display: none;
+	.fa-close {
+		position: absolute;
+		right: 2%;
+		top: 3%;
+		&:hover {
+			color: @orange;
+			cursor: pointer;
+		}
+	}
 }
 
 .modal-container {
 	position: absolute;
-	top: 20vh;
+	top: 15vh;
 	left: 20%;
 	background-color: @transparent-white;
 	box-shadow: 0 0 5px @transparent-black;
@@ -147,16 +154,6 @@
 	width: 60%;
 }
 
-.fa-close {
-	position: absolute;
-	right: 2%;
-	top: 3%;
-	&:hover {
-		color: @orange;
-		cursor: pointer;
-	}
-}
-
 .index-features {
 	color: @black;
 	margin: auto;
@@ -209,6 +206,124 @@
 		transition: all .1s linear;
 		&:hover {
 			color: @neon-green;
+		}
+	}
+}
+
+.user-content {
+	background-color: @white;
+}
+
+.new-container {
+	padding: 5%;
+	position: relative;
+	border-bottom: 2px solid @light-gray;
+	.new-task-form {
+		text-align: center;
+		.new-task-input-container {
+			margin-right: 5em;
+			display: inline-block;
+			text-align: left;
+			width: 30%;
+			input {
+				display: block;
+				background-color: @white;	
+				border: none;
+				border-bottom: 2px solid @blue;
+				font-size: 1.1em;
+				width: 90%;
+			}
+			label {
+				font-weight: 300;
+			}
+		}
+		.add-new-task {
+			margin-right: 10%;
+			background-color: @white;
+			border: none;
+			.fa-plus-circle {
+				color: @blue;
+				font-size: 10em;
+				vertical-align: bottom;
+				&:hover, &:active {
+					color: @dark-blue;
+				}
+			}
+		}
+	}
+}
+
+.existing-tasks-collection {
+	padding: 2em 0;
+	text-align: center;
+	font-size: 1.2em;
+	min-height: 57vh;
+	.existing-item-container {
+		margin: 4em 0;
+		.fa-circle-o {
+			margin-right: 2em;
+			font-size: .7em;
+		}
+		.edit-item, .delete-item, .record-time {
+			margin-right: .7em;
+			vertical-align: middle;
+			font-size: 1.5em;
+			&:hover, &:active {
+				cursor: pointer;
+			}
+		}
+		.edit-item:hover, .edit-item:active {
+			color: @orange;
+		}
+		.delete-item:hover, .delete-item:active {
+			color: red;
+		}
+		.record-time:hover, .record-time:active {
+			color: @light-green;
+		}
+		.task-item-partial-container {
+			margin-right: 2em;
+			display: inline-block;
+			text-align: left;
+			width: 25%;
+			input {
+				background-color: @white;
+				border: none;
+			}
+			p, input {
+				border-bottom: 2px solid @blue;
+				font-weight: 300;
+				width: 90%;
+			}
+		}
+		.edit {
+			display: none;
+		}
+		.edit-buttons {
+			padding-left: 10%;
+			text-align: left;
+			button {
+				margin-right: 2em;
+				margin-top: 2em;
+				&.save-changes {
+					padding: .5em 1.5em;
+					background-color: @light-green;
+					border: none;
+					color: @white;
+					&:hover, &:active {
+						background-color: @green;
+					}
+				}
+				&.cancel {
+					padding: .5em 1em;
+					background-color: @gray;
+					border: none;
+					color: @white;
+					&:hover, &:active {
+						background-color: @dark-gray;
+					}
+				}
+			}
 		}
 	}
 }

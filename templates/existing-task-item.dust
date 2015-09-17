@@ -1,0 +1,22 @@
+<form class="edit-task-item">
+	<i class="fa fa-circle-o fa-small"></i>
+	<div class="task-item-partial-container">
+		<p class="display task-item-task">{task}</p>
+		<input type="text" class="edit task-item-task" value="{task}">
+	</div>
+	<div class="task-item-partial-container">
+		<p class="display task-item-project">{project}</p>
+		<input type="text" class="edit task-item-project" value="{project}">
+	</div>
+	<div class="task-item-partial-container">
+		<p class="display task-item-time">{time}</p>
+		<input type="text" class="edit task-item-time" value="{time}">
+	</div>
+	<i class="fa fa-pencil edit-item" title="Edit Task"></i>
+	<i class="fa fa-close delete-item" title="Delete Task"></i>
+	<i class="fa fa-play-circle record-time" title="Record Time"></i>
+	<div class="edit edit-buttons">
+		<button class="save-changes">Save</button>
+		<button class="cancel">Cancel</button>
+	</div>
+</form>

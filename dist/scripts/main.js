@@ -2245,6 +2245,25 @@ define([
 		});
 	}
 )
+define(function() {
+	return [
+		{
+			project: 'Project 1',
+			task: 'Task 1',
+			time: '00:37:21'
+		},
+		{
+			project: 'Project 2',
+			task: 'Task 1',
+			time: '01:15:53'
+		},
+		{
+			project: 'Project 1',
+			task: 'Task 2',
+			time: '04:01:12'
+		}
+	]
+})
 define([
 		'backbone',
 		'marionette',
@@ -2378,12 +2397,73 @@ define([
 		'templates'
 		],
 	function(Backbone, Marionette, dustMarionette, templates) {
+		return ExistingItemView = Marionette.ItemView.extend({
+			template: 'existing-task-item.dust',
+			className: 'existing-item-container',
+			tagName: 'li',
+			events: {
+				'click .edit-item': 'editItem'
+			},
+
+			editItem: function(e) {
+				e.preventDefault();
+				this.$('.display').hide();
+				this.$('.edit').show();
+			}
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates',
+		'./user-manage-existing-item'
+		],
+	function(Backbone, Marionette, dustMarionette, templates, ExistingItemView) {
+		var existingItem = ExistingItemView;
+		return ExistingTasks = Marionette.CollectionView.extend({
+			template: '',
+			className: 'existing-tasks-collection',
+			tagName: 'ul',
+			childView: existingItem
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates'
+		],
+	function(Backbone, Marionette, dustMarionette, templates) {
+		return NewTask = Marionette.ItemView.extend({
+			template: 'new-task.dust',
+			className: 'new-container',
+			events: {
+				
+			}
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates',
+		'./user-manage-new',
+		'./user-manage-existing',
+		'collections/tasksCollection'
+		],
+	function(Backbone, Marionette, dustMarionette, templates, NewTask, ExistingTasks, TasksCollection) {
 		return UserManage = Marionette.LayoutView.extend({
 			template: 'user-manage.dust',
 			className: 'manage-container',
 			regions: {
 				manageNew: '.new-task-container',
 				manageTasks: '.existing-tasks-container'
+			},
+			onRender: function() {
+				this.showChildView('manageNew', new NewTask());
+				var tasks = new Backbone.Collection(TasksCollection)
+				this.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
 			}
 		})
 	})

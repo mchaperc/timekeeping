@@ -20,7 +20,7 @@
 
   gulp.task('styles', function () {
       return gulp.src(lessDir + '/*.less')
-          .pipe(less({ style: 'compressed' }).on('error', gutil.log))
+          .pipe(less().on('error', gutil.log))
           .pipe($.concat('main.css'))
           .pipe($.sourcemaps.write('.'))
           .pipe(gulp.dest(targetCSSDir))

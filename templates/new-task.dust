@@ -1,0 +1,11 @@
+<form class="new-task-form">
+	<button class="add-new-task" title="Add New Task"><i class="fa fa-plus-circle"></i></button>
+	<div class="new-task-input-container">
+		<input type="" class="new-task-task" autofocus>
+		<label class="new-task-task-label">Task Name/ID</label>	
+	</div>
+	<div class="new-task-input-container">
+		<input type="text" class="new-task-project">
+		<label class="new-task-project-label">Project Name/ID</label>
+	</div>
+</form>
