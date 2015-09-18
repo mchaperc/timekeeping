@@ -11,9 +11,6 @@ define([
 			template: '',
 			className: 'existing-tasks-collection',
 			tagName: 'ul',
-			childView: existingItem,
-			initialize: function() {
-				this.listenTo(this.collection, 'change', this.render);
-			}
+			childView: existingItem
 		})
 	})

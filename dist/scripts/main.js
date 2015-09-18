@@ -2254,15 +2254,6 @@ define([
 		});
 	}
 )
-define(['backbone', 'marionette', '../models/taskModel'],
-	function(Backbone, Marionette, TaskModel) {
-		var TasksCollection = Backbone.Collection.extend({
-			model: TaskModel,
-			url: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
-			comparator: 'project'
-		});
-		return TasksCollection;
-})
 define([
 		'backbone', 
 		'marionette'
@@ -2277,6 +2268,15 @@ define([
 				time: '00:00:00'
 			}
 		})
+})
+define(['backbone', 'marionette', '../models/taskModel'],
+	function(Backbone, Marionette, TaskModel) {
+		var TasksCollection = Backbone.Collection.extend({
+			model: TaskModel,
+			url: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
+			comparator: 'project'
+		});
+		return TasksCollection;
 })
 define([
 		'backbone',
@@ -2623,10 +2623,7 @@ define([
 			template: '',
 			className: 'existing-tasks-collection',
 			tagName: 'ul',
-			childView: existingItem,
-			initialize: function() {
-				this.listenTo(this.collection, 'change', this.render);
-			}
+			childView: existingItem
 		})
 	})
 define([
@@ -2658,6 +2655,8 @@ define([
 						time: '00:00:00',
 						id: uniqueId
 					};
+
+					this.collection.add(newTask);
 
 					Parse.User.current().set('tasks', tasks.concat(newTask));
 
@@ -2695,9 +2694,10 @@ define([
 
 				Parse.User.current().fetch().then(function(user) {
 					var userTasks = user.get('tasks') || [];
+					var userModel = new Backbone.Model(user);
 					var tasks = new Backbone.Collection(userTasks);
 
-					self.showChildView('manageNew', new NewTask({model: user}));
+					self.showChildView('manageNew', new NewTask({model: userModel, collection: tasks}));
 					self.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
 				});
 			}

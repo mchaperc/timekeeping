@@ -28,6 +28,8 @@ define([
 						id: uniqueId
 					};
 
+					this.collection.add(newTask);
+
 					Parse.User.current().set('tasks', tasks.concat(newTask));
 
 					Parse.User.current().save();

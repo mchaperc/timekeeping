@@ -20,9 +20,10 @@ define([
 
 				Parse.User.current().fetch().then(function(user) {
 					var userTasks = user.get('tasks') || [];
+					var userModel = new Backbone.Model(user);
 					var tasks = new Backbone.Collection(userTasks);
 
-					self.showChildView('manageNew', new NewTask({model: user}));
+					self.showChildView('manageNew', new NewTask({model: userModel, collection: tasks}));
 					self.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
 				});
 			}
