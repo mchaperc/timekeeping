@@ -2206,22 +2206,31 @@ define([
 
 			initialize: function(app) {
 				this.app = app;
+				Parse.initialize("gWfCSea0yLehT4CM6bKr7pTDQ3M7ZqzIBukNmQWn", "6l1CBOx1uiJXTFUAQQf8mxauyCsJKyqL3jU74htt");
 			},
 
-			index: function() {
-				this.indexView = new IndexView();
-				this.app.getRegion('main').show(this.indexView);
-				this.indexView.showChildView('indexHeader', new HeaderView());
-				this.indexView.showChildView('indexFeatures', new FeatureView());
-				this.indexView.showChildView('indexFooter', new FooterView());
+			index: function(id) {
+				if (Parse.User.current()) {
+					this.navigate('#user/manage/1', true);
+				} else {
+					this.indexView = new IndexView();
+					this.app.getRegion('main').show(this.indexView);
+					this.indexView.showChildView('indexHeader', new HeaderView({router: this}));
+					this.indexView.showChildView('indexFeatures', new FeatureView());
+					this.indexView.showChildView('indexFooter', new FooterView());
+				}
 			},
 
 			manage: function(id) {
-				this.userView = new UserView();
-				this.app.getRegion('main').show(this.userView);
-				this.userView.showChildView('userHeader', new UserHeader());
-				$('.navbar-center a:first-child').addClass('active');
-				this.userView.showChildView('userContent', new UserManage());
+				if (!Parse.User.current()) {
+					this.navigate('', true);
+				} else {
+					this.userView = new UserView();
+					this.app.getRegion('main').show(this.userView);
+					this.userView.showChildView('userHeader', new UserHeader({router: this}));
+					$('.navbar-center a:first-child').addClass('active');
+					this.userView.showChildView('userContent', new UserManage());
+				}
 			},
 
 			calendar: function(id) {
@@ -2335,7 +2344,15 @@ define([
 				'click .nav-item': 'showModal',
 				'click .exit-modal': 'hideModal',
 				'click .fa-user': 'loginModal',
-				'click .fa-user-plus': 'registerModal'
+				'click .fa-user-plus': 'registerModal',
+				'click .login-submit': 'login',
+				'click .register-submit': 'register'
+			},
+			initialize: function(options) {
+				if (Parse.User) {
+					console.log(Parse.User.current());
+				}
+				this.router = options.router;
 			},
 			showModal: function(e) {
 				e.preventDefault();
@@ -2351,6 +2368,46 @@ define([
 				e.preventDefault();
 				console.log(e.target);
 				$('.modal').hide();
+			},
+			login: function(e) {
+				e.preventDefault();
+			},
+			register: function(e) {
+				e.preventDefault();
+				var self = this;
+
+				if (this.checkRegisterInputs()) {
+					var user = new Parse.User();
+
+					user.set({'email': $('.register-modal-form-input-email').val(),
+							'firstName': $('.register-modal-form-input-first-name').val(),
+							'lastName': $('.register-modal-form-input-last-name').val(),
+							'username': $('.register-modal-form-input-first-name').val() + ' ' + $('login-modal-form-input-last-name').val(),
+							'password': $('.register-modal-form-input-password').val()
+					});
+
+					user.signUp(null, {
+					  success: function(user) {
+					    self.router.navigate('#user/manage/:id', true);
+					  },
+					  error: function(user, error) {
+					    console.log('user:', user.attributes, 'error:', error);
+					  }
+					});
+				}
+			},
+
+			checkRegisterInputs: function() {
+				if ($('.register-modal-form-input-email').val() && $('.register-modal-form-input-first-name').val() && $('.register-modal-form-input-last-name').val() && $('.register-modal-form-input-password').val()) {
+					return true;
+				} else {
+					alert('Please, fill in all fields.')
+					return false;
+				}
+			},
+
+			checkLoginInputs: function() {
+
 			}
 		})
 	})
@@ -2392,9 +2449,34 @@ define([
 	function(Backbone, Marionette, dustMarionette, templates) {
 		return UserHeader = Marionette.ItemView.extend({
 			template: 'user-header.dust',
-			className: 'user-header-container'
+			className: 'user-header-container',
+			events: {
+				'mouseenter .nav-user': 'showOptions',
+				'mouseleave .nav-user': 'hideOptions',
+				'click .logout': 'logOut'
+			},
+
+			initialize: function(options) {
+				this.router = options.router;
+			},
+
+			showOptions: function(e) {
+				e.preventDefault();
+				$('.nav-user-options').fadeIn('fast');
+			},
+
+			hideOptions: function(e) {
+				e.preventDefault();
+				$('.nav-user-options').hide();
+			},
+
+			logOut: function(e) {
+				e.preventDefault();
+				Parse.User.logOut();
+				this.router.navigate('', true);
+			}
 		})
-	})
+	}) 
 define([
 		'backbone',
 		'marionette',

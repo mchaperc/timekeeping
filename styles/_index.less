@@ -90,10 +90,11 @@
 	position: absolute;
 	top: 15vh;
 	left: 20%;
+	padding-bottom: 3em;
 	background-color: @transparent-white;
 	box-shadow: 0 0 5px @transparent-black;
 	color: @black;
-	height: 60vh;
+	min-height: 60vh;
 	width: 60%;
 	.login-modal-header-container, .register-modal-header-container, .about-modal-header-container {
 		padding: 1em;
@@ -165,7 +166,6 @@
 	.features-carousel-slide {
 		margin: 1em;
 		background-color: @black;
-		// border-radius: 10px;
 		color: @white;
 		.slide-content-container {
 			position: absolute;
@@ -214,6 +214,33 @@
 
 .user-content {
 	background-color: @white;
+}
+
+.nav-user-username {
+	display: inline-block;
+	margin-right: 2em;
+	color: @white;
+}
+
+.nav-user-options {
+	display: none;
+	position: absolute;
+	top: 50px;
+	right: 3.3vw;
+	background-color: @dark-gray;
+	z-index: 100;
+	.nav-user-options-item a{
+		margin: 0 auto;
+		padding: 0 1em;
+		width: 100%;
+		color: @white;
+		text-align: center;
+		&:hover, &:active {
+			cursor: pointer;
+			background-color: @black;
+			text-decoration: none;
+		}
+	}
 }
 
 .new-container {

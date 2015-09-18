@@ -69,10 +69,11 @@
   position: absolute;
   top: 15vh;
   left: 20%;
+  padding-bottom: 3em;
   background-color: rgba(245, 245, 245, 0.97);
   box-shadow: 0 0 5px rgba(50, 50, 50, 0.4);
   color: #323232;
-  height: 60vh;
+  min-height: 60vh;
   width: 60%;
 }
 .modal-container .login-modal-header-container,
@@ -200,6 +201,32 @@
 }
 .user-content {
   background-color: #fafafa;
+}
+.nav-user-username {
+  display: inline-block;
+  margin-right: 2em;
+  color: #fafafa;
+}
+.nav-user-options {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 3.3vw;
+  background-color: #505050;
+  z-index: 100;
+}
+.nav-user-options .nav-user-options-item a {
+  margin: 0 auto;
+  padding: 0 1em;
+  width: 100%;
+  color: #fafafa;
+  text-align: center;
+}
+.nav-user-options .nav-user-options-item a:hover,
+.nav-user-options .nav-user-options-item a:active {
+  cursor: pointer;
+  background-color: #323232;
+  text-decoration: none;
 }
 .new-container {
   padding: 5%;
@@ -447,10 +474,11 @@
   position: absolute;
   top: 15vh;
   left: 20%;
+  padding-bottom: 3em;
   background-color: rgba(245, 245, 245, 0.97);
   box-shadow: 0 0 5px rgba(50, 50, 50, 0.4);
   color: #323232;
-  height: 60vh;
+  min-height: 60vh;
   width: 60%;
 }
 .modal-container .login-modal-header-container,
@@ -578,6 +606,32 @@
 }
 .user-content {
   background-color: #fafafa;
+}
+.nav-user-username {
+  display: inline-block;
+  margin-right: 2em;
+  color: #fafafa;
+}
+.nav-user-options {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 3.3vw;
+  background-color: #505050;
+  z-index: 100;
+}
+.nav-user-options .nav-user-options-item a {
+  margin: 0 auto;
+  padding: 0 1em;
+  width: 100%;
+  color: #fafafa;
+  text-align: center;
+}
+.nav-user-options .nav-user-options-item a:hover,
+.nav-user-options .nav-user-options-item a:active {
+  cursor: pointer;
+  background-color: #323232;
+  text-decoration: none;
 }
 .new-container {
   padding: 5%;

@@ -41,10 +41,14 @@
 		<form class="register-modal-form">
 			<h3 class="register-modal-form-header">Register for a new account</h3>
 			<label class="register-modal-form-label">Email</label>
-			<input type="text" class="register-modal-form-input-register">
+			<input type="email" class="register-modal-form-input-email" required autofocus>
+			<label class="login-modal-form-label">First name</label>
+			<input type="text" class="register-modal-form-input-first-name" required>
+			<label class="login-modal-form-label">Last name</label>
+			<input type="text" class="register-modal-form-input-last-name" required>
 			<label class="register-modal-form-label">Password</label>
-			<input type="text" class="register-modal-form-register-password">
-			<button class="submit">Register</button>
+			<input type="password" class="register-modal-form-input-password" required>
+			<button class="register-submit">Register</button>
 		</form>
 		<div class="register-modal-help">
 			<h3 class="register-modal-help-header">Already have an account?</h3>
@@ -64,15 +68,14 @@
 		</div>
 		<form class="login-modal-form">
 			<h3 class="login-modal-form-header">Login</h3>
-			<label class="login-modal-form-label">Username</label>
-			<input type="text" class="login-modal-form-input-username">
+			<label class="login-modal-form-label">Email</label>
+			<input type="text" class="login-modal-form-input-email" required autofocus>
 			<label class="login-modal-form-label">Password</label>
-			<input type="text" class="login-modal-form-input-password">
-			<button class="submit">Login</button>
+			<input type="text" class="login-modal-form-input-password" required>
+			<button class="login-submit">Login</button>
 		</form>
 		<div class="login-modal-help">
 			<h3 class="login-modal-help-header">Need help logging in?</h3>
-			<a href="#" class="forgot-username">I forgot my username</a>
 			<a href="#" class="forgot-password">I forgot my password</a>
 			<h3 class="login-modal-help-header">Need an account?</h3>
 			<a href="#" class="nav-item">Register</a>

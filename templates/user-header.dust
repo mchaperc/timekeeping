@@ -11,7 +11,11 @@
 		<li class="nav-item"><a href="#user/reports/1">Reports</a></li>
 	</ul>
 	<div class="nav-user">
-		<a href="#" class="nav-user-username">Matt Chastain</a>
+		<p class="nav-user-username">Matt Chastain</p>
 		<img src="http://mchaperc.github.io/portfolio/img/me.png" alt="" class="nav-user-avatar">
+		<ul class="nav-user-options">
+			<li class="nav-user-options-item settings"><a href="#">Settings</a></li>
+			<li class="nav-user-options-item logout"><a href="#">Logout</a></li>
+		</ul>
 	</div>
 </div>

@@ -22,22 +22,31 @@ define([
 
 			initialize: function(app) {
 				this.app = app;
+				Parse.initialize("gWfCSea0yLehT4CM6bKr7pTDQ3M7ZqzIBukNmQWn", "6l1CBOx1uiJXTFUAQQf8mxauyCsJKyqL3jU74htt");
 			},
 
-			index: function() {
-				this.indexView = new IndexView();
-				this.app.getRegion('main').show(this.indexView);
-				this.indexView.showChildView('indexHeader', new HeaderView());
-				this.indexView.showChildView('indexFeatures', new FeatureView());
-				this.indexView.showChildView('indexFooter', new FooterView());
+			index: function(id) {
+				if (Parse.User.current()) {
+					this.navigate('#user/manage/1', true);
+				} else {
+					this.indexView = new IndexView();
+					this.app.getRegion('main').show(this.indexView);
+					this.indexView.showChildView('indexHeader', new HeaderView({router: this}));
+					this.indexView.showChildView('indexFeatures', new FeatureView());
+					this.indexView.showChildView('indexFooter', new FooterView());
+				}
 			},
 
 			manage: function(id) {
-				this.userView = new UserView();
-				this.app.getRegion('main').show(this.userView);
-				this.userView.showChildView('userHeader', new UserHeader());
-				$('.navbar-center a:first-child').addClass('active');
-				this.userView.showChildView('userContent', new UserManage());
+				if (!Parse.User.current()) {
+					this.navigate('', true);
+				} else {
+					this.userView = new UserView();
+					this.app.getRegion('main').show(this.userView);
+					this.userView.showChildView('userHeader', new UserHeader({router: this}));
+					$('.navbar-center a:first-child').addClass('active');
+					this.userView.showChildView('userContent', new UserManage());
+				}
 			},
 
 			calendar: function(id) {
