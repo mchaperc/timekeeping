@@ -2538,7 +2538,9 @@ define([
 			recordTime: function(e) {
 				e.preventDefault();
 				var self = this;
-				if(!self.running) {
+				console.log(self.model.get('running'));
+				if(!self.model.get('running')) {
+					self.model.set('running', true);
 					interval = setInterval(function() {
 						var time = self.model.get('time');
 						time = time.toString().split(':');
@@ -2573,14 +2575,13 @@ define([
 						}
 						Parse.User.current().set('tasks', filteredTasks.concat(currentTask));
 					}, 1000);
-					self.running = true;
 				}
 			},
 
 			pauseTime: function(e) {
 				e.preventDefault();
 				var self = this;
-				this.running = false;
+				this.model.set('running', false);
 				Parse.User.current().save();
 				clearInterval(interval);
 			},
