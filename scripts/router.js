@@ -43,7 +43,7 @@ define([
 				} else {
 					this.userView = new UserView();
 					this.app.getRegion('main').show(this.userView);
-					this.userView.showChildView('userHeader', new UserHeader({router: this}));
+					this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
 					$('.navbar-center a:first-child').addClass('active');
 					this.userView.showChildView('userContent', new UserManage());
 				}

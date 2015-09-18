@@ -17,9 +17,6 @@ define([
 				'click .register-submit': 'register'
 			},
 			initialize: function(options) {
-				if (Parse.User) {
-					console.log(Parse.User.current());
-				}
 				this.router = options.router;
 			},
 			showModal: function(e) {
@@ -30,15 +27,24 @@ define([
 			},
 			loadModal: function(modal) {
 				$('.' + modal.toLowerCase() + '-modal').fadeIn();
-				console.log(modal.toLowerCase());
 			},
 			hideModal: function(e) {
 				e.preventDefault();
-				console.log(e.target);
 				$('.modal').hide();
 			},
 			login: function(e) {
 				e.preventDefault();
+				var self = this;
+				var username = $('.login-modal-form-input-email').val();
+				var password = $('.login-modal-form-input-password').val();
+				Parse.User.logIn(username, password, {
+					success: function(user) {
+						self.router.navigate('#user/manage/' + user.id, true);
+					},
+					error: function(user, error) {
+						console.log('user:', user, 'error:', error);
+					}
+				});
 			},
 			register: function(e) {
 				e.preventDefault();
@@ -50,13 +56,13 @@ define([
 					user.set({'email': $('.register-modal-form-input-email').val(),
 							'firstName': $('.register-modal-form-input-first-name').val(),
 							'lastName': $('.register-modal-form-input-last-name').val(),
-							'username': $('.register-modal-form-input-first-name').val() + ' ' + $('login-modal-form-input-last-name').val(),
+							'username': $('.register-modal-form-input-email').val(),
 							'password': $('.register-modal-form-input-password').val()
 					});
 
 					user.signUp(null, {
 					  success: function(user) {
-					    self.router.navigate('#user/manage/:id', true);
+					    self.router.navigate('#user/manage/' + user.id, true);
 					  },
 					  error: function(user, error) {
 					    console.log('user:', user.attributes, 'error:', error);

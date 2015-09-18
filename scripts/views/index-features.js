@@ -12,12 +12,12 @@ define([
 			className: 'features-container',
 
 			onRender: function() {
-				$(document).ready(function() {
+				setTimeout(function() {
 					$('.features-carousel').slick({
 						dots: true, 
 						variableWidth: true
 					});
-				});
+				}, 1)
 			}
 		})
 	})

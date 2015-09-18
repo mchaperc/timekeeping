@@ -67,7 +67,9 @@
 }
 .modal-container {
   position: absolute;
-  top: 15vh;
+  top: 40%;
+  transform: translateY(-40%);
+  -webkit-transform: translateY(-40%);
   left: 20%;
   padding-bottom: 3em;
   background-color: rgba(245, 245, 245, 0.97);
@@ -211,7 +213,7 @@
   display: none;
   position: absolute;
   top: 50px;
-  right: 3.3vw;
+  right: 3.4vw;
   background-color: #505050;
   z-index: 100;
 }
@@ -472,7 +474,9 @@
 }
 .modal-container {
   position: absolute;
-  top: 15vh;
+  top: 40%;
+  transform: translateY(-40%);
+  -webkit-transform: translateY(-40%);
   left: 20%;
   padding-bottom: 3em;
   background-color: rgba(245, 245, 245, 0.97);
@@ -616,7 +620,7 @@
   display: none;
   position: absolute;
   top: 50px;
-  right: 3.3vw;
+  right: 3.4vw;
   background-color: #505050;
   z-index: 100;
 }

@@ -2227,7 +2227,7 @@ define([
 				} else {
 					this.userView = new UserView();
 					this.app.getRegion('main').show(this.userView);
-					this.userView.showChildView('userHeader', new UserHeader({router: this}));
+					this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
 					$('.navbar-center a:first-child').addClass('active');
 					this.userView.showChildView('userContent', new UserManage());
 				}
@@ -2292,12 +2292,12 @@ define([
 			className: 'features-container',
 
 			onRender: function() {
-				$(document).ready(function() {
+				setTimeout(function() {
 					$('.features-carousel').slick({
 						dots: true, 
 						variableWidth: true
 					});
-				});
+				}, 1)
 			}
 		})
 	})
@@ -2349,9 +2349,6 @@ define([
 				'click .register-submit': 'register'
 			},
 			initialize: function(options) {
-				if (Parse.User) {
-					console.log(Parse.User.current());
-				}
 				this.router = options.router;
 			},
 			showModal: function(e) {
@@ -2362,15 +2359,24 @@ define([
 			},
 			loadModal: function(modal) {
 				$('.' + modal.toLowerCase() + '-modal').fadeIn();
-				console.log(modal.toLowerCase());
 			},
 			hideModal: function(e) {
 				e.preventDefault();
-				console.log(e.target);
 				$('.modal').hide();
 			},
 			login: function(e) {
 				e.preventDefault();
+				var self = this;
+				var username = $('.login-modal-form-input-email').val();
+				var password = $('.login-modal-form-input-password').val();
+				Parse.User.logIn(username, password, {
+					success: function(user) {
+						self.router.navigate('#user/manage/' + user.id, true);
+					},
+					error: function(user, error) {
+						console.log('user:', user, 'error:', error);
+					}
+				});
 			},
 			register: function(e) {
 				e.preventDefault();
@@ -2382,13 +2388,13 @@ define([
 					user.set({'email': $('.register-modal-form-input-email').val(),
 							'firstName': $('.register-modal-form-input-first-name').val(),
 							'lastName': $('.register-modal-form-input-last-name').val(),
-							'username': $('.register-modal-form-input-first-name').val() + ' ' + $('login-modal-form-input-last-name').val(),
+							'username': $('.register-modal-form-input-email').val(),
 							'password': $('.register-modal-form-input-password').val()
 					});
 
 					user.signUp(null, {
 					  success: function(user) {
-					    self.router.navigate('#user/manage/:id', true);
+					    self.router.navigate('#user/manage/' + user.id, true);
 					  },
 					  error: function(user, error) {
 					    console.log('user:', user.attributes, 'error:', error);
@@ -2500,7 +2506,11 @@ define([
 			},
 
 			initialize: function() {
-				this.listenTo(this.model, 'change', this.render)
+				var tasks = Parse.User.current().get('tasks') || [];
+				var match = _.filter(tasks, function(task) {
+					return task.id === this.model.get('id');
+				}.bind(this));
+				this.listenTo(this.model, 'change', this.render);
 			},
 
 			editItem: function(e) {
@@ -2529,7 +2539,7 @@ define([
 				e.preventDefault();
 				var self = this;
 				if(!self.running) {
-					self.interval = setInterval(function() {
+					interval = setInterval(function() {
 						var time = self.model.get('time');
 						time = time.toString().split(':');
 						time[2] = Number(time[2]) + 1;
@@ -2547,9 +2557,21 @@ define([
 							} else {
 								return item;
 							}
-						})
+						});
 						self.model.set('time', time.join(':'));
-						self.model.save();
+						var currentTask = _.filter(Parse.User.current().get('tasks') || [], function(task) {
+							return task.id === self.model.id;
+						});
+						var filteredTasks = _.filter(Parse.User.current().get('tasks') || [], function(task) {
+							return task.id !== self.model.id;
+						});
+						currentTask[0] = {
+							task: self.model.get('task'),
+							project: self.model.get('project'),
+							time: self.model.get('time'),
+							id: self.model.get('id')
+						}
+						Parse.User.current().set('tasks', filteredTasks.concat(currentTask));
 					}, 1000);
 					self.running = true;
 				}
@@ -2557,8 +2579,10 @@ define([
 
 			pauseTime: function(e) {
 				e.preventDefault();
+				var self = this;
 				this.running = false;
-				clearInterval(this.interval);
+				Parse.User.current().save();
+				clearInterval(interval);
 			},
 
 			saveChanges: function(e) {
@@ -2598,7 +2622,10 @@ define([
 			template: '',
 			className: 'existing-tasks-collection',
 			tagName: 'ul',
-			childView: existingItem
+			childView: existingItem,
+			initialize: function() {
+				this.listenTo(this.collection, 'change', this.render);
+			}
 		})
 	})
 define([
@@ -2616,14 +2643,25 @@ define([
 			},
 			addTask: function(e) {
 				e.preventDefault();
+				var user = Parse.User.current();
+				var tasks = Parse.User.current().get('tasks') || [];
+
 				if (this.$('.new-task-task').val()) {
 					var taskName = this.$('.new-task-task').val();
 					var projectName = this.$('.new-task-project').val() || 'N/A';
-					this.collection.create({
+					var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+					var uniqueId = randLetter + Date.now();
+					var newTask = {
 						task: taskName,
 						project: projectName,
-						time: '00:00:00'
-					});
+						time: '00:00:00',
+						id: uniqueId
+					};
+
+					Parse.User.current().set('tasks', tasks.concat(newTask));
+
+					Parse.User.current().save();
+
 					this.$('.new-task-project').val('')
 					this.$('.new-task-task').val('');
 					this.$('.new-task-task').css({'outline': 'none'});
@@ -2652,11 +2690,15 @@ define([
 				manageTasks: '.existing-tasks-container'
 			},
 			onRender: function() {
-				var tasks = new TasksCollection();
-				tasks.fetch().then(function(response) {
-					this.showChildView('manageNew', new NewTask({collection: tasks}));
-					this.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
-				}.bind(this));
+				var self = this;
+
+				Parse.User.current().fetch().then(function(user) {
+					var userTasks = user.get('tasks') || [];
+					var tasks = new Backbone.Collection(userTasks);
+
+					self.showChildView('manageNew', new NewTask({model: user}));
+					self.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
+				});
 			}
 		})
 	})

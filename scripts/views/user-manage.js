@@ -16,11 +16,15 @@ define([
 				manageTasks: '.existing-tasks-container'
 			},
 			onRender: function() {
-				var tasks = new TasksCollection();
-				tasks.fetch().then(function(response) {
-					this.showChildView('manageNew', new NewTask({collection: tasks}));
-					this.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
-				}.bind(this));
+				var self = this;
+
+				Parse.User.current().fetch().then(function(user) {
+					var userTasks = user.get('tasks') || [];
+					var tasks = new Backbone.Collection(userTasks);
+
+					self.showChildView('manageNew', new NewTask({model: user}));
+					self.showChildView('manageTasks', new ExistingTasks({collection: tasks}));
+				});
 			}
 		})
 	})

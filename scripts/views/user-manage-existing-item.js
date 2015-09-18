@@ -21,7 +21,11 @@ define([
 			},
 
 			initialize: function() {
-				this.listenTo(this.model, 'change', this.render)
+				var tasks = Parse.User.current().get('tasks') || [];
+				var match = _.filter(tasks, function(task) {
+					return task.id === this.model.get('id');
+				}.bind(this));
+				this.listenTo(this.model, 'change', this.render);
 			},
 
 			editItem: function(e) {
@@ -50,7 +54,7 @@ define([
 				e.preventDefault();
 				var self = this;
 				if(!self.running) {
-					self.interval = setInterval(function() {
+					interval = setInterval(function() {
 						var time = self.model.get('time');
 						time = time.toString().split(':');
 						time[2] = Number(time[2]) + 1;
@@ -68,9 +72,21 @@ define([
 							} else {
 								return item;
 							}
-						})
+						});
 						self.model.set('time', time.join(':'));
-						self.model.save();
+						var currentTask = _.filter(Parse.User.current().get('tasks') || [], function(task) {
+							return task.id === self.model.id;
+						});
+						var filteredTasks = _.filter(Parse.User.current().get('tasks') || [], function(task) {
+							return task.id !== self.model.id;
+						});
+						currentTask[0] = {
+							task: self.model.get('task'),
+							project: self.model.get('project'),
+							time: self.model.get('time'),
+							id: self.model.get('id')
+						}
+						Parse.User.current().set('tasks', filteredTasks.concat(currentTask));
 					}, 1000);
 					self.running = true;
 				}
@@ -78,8 +94,10 @@ define([
 
 			pauseTime: function(e) {
 				e.preventDefault();
+				var self = this;
 				this.running = false;
-				clearInterval(this.interval);
+				Parse.User.current().save();
+				clearInterval(interval);
 			},
 
 			saveChanges: function(e) {

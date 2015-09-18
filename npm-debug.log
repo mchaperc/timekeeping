@@ -1,0 +1,315 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/Users/mchastain/.nvm/v0.10.40/bin/npm',
+1 verbose cli   '-g',
+1 verbose cli   'install',
+1 verbose cli   'sails' ]
+2 info using npm@2.13.3
+3 info using node@v0.10.40
+4 verbose install initial load of /Users/mchastain/.nvm/v0.10.40/lib/package.json
+5 verbose readDependencies loading dependencies from /Users/mchastain/.nvm/v0.10.40/lib/package.json
+6 silly cache add args [ 'sails', null ]
+7 verbose cache add spec sails
+8 silly cache add parsed spec { raw: 'sails',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'sails',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 silly addNamed sails@*
+10 verbose addNamed "*" is a valid semver range for sails
+11 silly addNameRange { name: 'sails', range: '*', hasData: false }
+12 silly mapToRegistry name sails
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/sails
+16 verbose addNameRange registry:https://registry.npmjs.org/sails not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/sails
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 11:47:28
+20 verbose request id c2c064ef808e4171
+21 verbose etag "2IK81XLN61FQM4G9F9GC5TIDR"
+22 http request GET https://registry.npmjs.org/sails
+23 http 304 https://registry.npmjs.org/sails
+24 silly get cb [ 304,
+24 silly get   { date: 'Fri, 18 Sep 2015 15:47:35 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     'cache-control': 'max-age=60',
+24 silly get     etag: '"2IK81XLN61FQM4G9F9GC5TIDR"',
+24 silly get     age: '0',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-iad2139-IAD',
+24 silly get     'x-cache': 'HIT',
+24 silly get     'x-cache-hits': '1',
+24 silly get     'x-timer': 'S1442591255.966432,VS0,VE90',
+24 silly get     vary: 'Accept' } ]
+25 verbose etag https://registry.npmjs.org/sails from cache
+26 verbose get saving sails to /Users/mchastain/.npm/registry.npmjs.org/sails/.cache.json
+27 silly addNameRange number 2 { name: 'sails', range: '*', hasData: true }
+28 silly addNameRange versions [ 'sails',
+28 silly addNameRange   [ '0.0.0',
+28 silly addNameRange     '0.0.0-2',
+28 silly addNameRange     '0.7.0',
+28 silly addNameRange     '0.7.0-2',
+28 silly addNameRange     '0.7.0-3',
+28 silly addNameRange     '0.7.0-4',
+28 silly addNameRange     '0.7.0-5',
+28 silly addNameRange     '0.0.0-1',
+28 silly addNameRange     '0.7.0-6',
+28 silly addNameRange     '0.7.0-7',
+28 silly addNameRange     '0.7.0-8',
+28 silly addNameRange     '0.7.1',
+28 silly addNameRange     '0.7.2',
+28 silly addNameRange     '0.7.3',
+28 silly addNameRange     '0.7.4',
+28 silly addNameRange     '0.7.4-1',
+28 silly addNameRange     '0.7.5-0',
+28 silly addNameRange     '0.7.6-0',
+28 silly addNameRange     '0.7.7',
+28 silly addNameRange     '0.7.8',
+28 silly addNameRange     '0.7.9',
+28 silly addNameRange     '0.8.0',
+28 silly addNameRange     '0.8.1',
+28 silly addNameRange     '0.8.2',
+28 silly addNameRange     '0.8.3',
+28 silly addNameRange     '0.8.4',
+28 silly addNameRange     '0.8.5',
+28 silly addNameRange     '0.8.6',
+28 silly addNameRange     '0.8.7',
+28 silly addNameRange     '0.8.71',
+28 silly addNameRange     '0.8.72',
+28 silly addNameRange     '0.8.73',
+28 silly addNameRange     '0.8.74',
+28 silly addNameRange     '0.8.75',
+28 silly addNameRange     '0.8.76',
+28 silly addNameRange     '0.8.77',
+28 silly addNameRange     '0.8.78',
+28 silly addNameRange     '0.8.79',
+28 silly addNameRange     '0.8.80',
+28 silly addNameRange     '0.8.81',
+28 silly addNameRange     '0.8.82',
+28 silly addNameRange     '0.8.83',
+28 silly addNameRange     '0.8.84',
+28 silly addNameRange     '0.8.85',
+28 silly addNameRange     '0.8.86',
+28 silly addNameRange     '0.8.87',
+28 silly addNameRange     '0.8.88',
+28 silly addNameRange     '0.8.89',
+28 silly addNameRange     '0.8.89-1',
+28 silly addNameRange     '0.8.892',
+28 silly addNameRange     '0.8.894',
+28 silly addNameRange     '0.8.895',
+28 silly addNameRange     '0.8.9',
+28 silly addNameRange     '0.8.91',
+28 silly addNameRange     '0.8.92',
+28 silly addNameRange     '0.8.93',
+28 silly addNameRange     '0.8.94',
+28 silly addNameRange     '0.9.0',
+28 silly addNameRange     '0.9.1',
+28 silly addNameRange     '0.9.2',
+28 silly addNameRange     '0.9.3',
+28 silly addNameRange     '0.9.4',
+28 silly addNameRange     '0.9.5',
+28 silly addNameRange     '0.9.7',
+28 silly addNameRange     '0.9.8',
+28 silly addNameRange     '0.9.9',
+28 silly addNameRange     '0.10.0-rc1',
+28 silly addNameRange     '0.10.0-rc2',
+28 silly addNameRange     '0.10.0-rc3',
+28 silly addNameRange     '0.9.11',
+28 silly addNameRange     '0.10.0-rc4',
+28 silly addNameRange     '0.9.12',
+28 silly addNameRange     '0.9.13',
+28 silly addNameRange     '0.9.15',
+28 silly addNameRange     '0.9.16',
+28 silly addNameRange     '0.10.0-rc5',
+28 silly addNameRange     '0.10.0-rc6',
+28 silly addNameRange     '0.10.0-rc7',
+28 silly addNameRange     '0.10.0-rc8',
+28 silly addNameRange     '0.9.17',
+28 silly addNameRange     '0.10.0-rc9',
+28 silly addNameRange     '0.10.0-max',
+28 silly addNameRange     '0.10.0-rc10',
+28 silly addNameRange     '0.10.0-rc11',
+28 silly addNameRange     '0.10.1',
+28 silly addNameRange     '0.10.2',
+28 silly addNameRange     '0.10.3',
+28 silly addNameRange     '0.10.4',
+28 silly addNameRange     '0.10.5',
+28 silly addNameRange     '0.11.0-rc2',
+28 silly addNameRange     '0.11.0-rc3',
+28 silly addNameRange     '0.11.0-rc4',
+28 silly addNameRange     '0.11.0-rc5',
+28 silly addNameRange     '0.11.0-rc6',
+28 silly addNameRange     '0.11.0-rc7',
+28 silly addNameRange     '0.11.0-rc8',
+28 silly addNameRange     '0.11.0-rc9',
+28 silly addNameRange     '0.11.0-rc10',
+28 silly addNameRange     '0.11.0',
+28 silly addNameRange     '0.11.1',
+28 silly addNameRange     '0.11.1-rc1',
+28 silly addNameRange     '0.12.0-rc1',
+28 silly addNameRange     '0.12.0-rc2',
+28 silly addNameRange     '0.12.0-rc3' ] ]
+29 silly addNamed sails@0.11.0
+30 verbose addNamed "0.11.0" is a plain semver version for sails
+31 silly cache afterAdd sails@0.11.0
+32 verbose afterAdd /Users/mchastain/.npm/sails/0.11.0/package/package.json not in flight; writing
+33 verbose afterAdd /Users/mchastain/.npm/sails/0.11.0/package/package.json written
+34 silly install resolved [ { name: 'sails',
+34 silly install resolved     author: { name: 'Mike McNeil', email: '@mikermcneil' },
+34 silly install resolved     version: '0.11.0',
+34 silly install resolved     description: 'API-driven framework for building realtime apps, using MVC conventions (based on Express and Socket.io)',
+34 silly install resolved     homepage: 'http://sailsjs.org',
+34 silly install resolved     keywords:
+34 silly install resolved      [ 'mvc',
+34 silly install resolved        'web-framework',
+34 silly install resolved        'express',
+34 silly install resolved        'sails',
+34 silly install resolved        'sailsjs',
+34 silly install resolved        'sails.js',
+34 silly install resolved        'REST',
+34 silly install resolved        'API',
+34 silly install resolved        'orm',
+34 silly install resolved        'socket.io' ],
+34 silly install resolved     main: './lib/index.js',
+34 silly install resolved     bin: { sails: './bin/sails.js' },
+34 silly install resolved     scripts:
+34 silly install resolved      { test: 'mocha -b',
+34 silly install resolved        prepublish: 'npm prune',
+34 silly install resolved        preinstall: 'node ./lib/preinstall_npmcheck.js' },
+34 silly install resolved     directories: { lib: 'lib' },
+34 silly install resolved     dependencies:
+34 silly install resolved      { anchor: '~0.10.0',
+34 silly install resolved        async: '~0.9.0',
+34 silly install resolved        'captains-log': '~0.11.8',
+34 silly install resolved        colors: '~0.6.2',
+34 silly install resolved        commander: '~2.1.0',
+34 silly install resolved        'connect-flash': '~0.1.1',
+34 silly install resolved        cookie: '0.1.2',
+34 silly install resolved        'cookie-signature': '1.0.4',
+34 silly install resolved        ejs: '~0.8.4',
+34 silly install resolved        'ejs-locals': '~1.0.2',
+34 silly install resolved        express: '3.16.0',
+34 silly install resolved        'express-handlebars': '~1.0.1',
+34 silly install resolved        'fs-extra': '~0.8.1',
+34 silly install resolved        glob: '~3.2.9',
+34 silly install resolved        grunt: '0.4.2',
+34 silly install resolved        'grunt-cli': '~0.1.11',
+34 silly install resolved        'grunt-contrib-clean': '~0.5.0',
+34 silly install resolved        'grunt-contrib-coffee': '~0.10.1',
+34 silly install resolved        'grunt-contrib-concat': '~0.3.0',
+34 silly install resolved        'grunt-contrib-copy': '~0.5.0',
+34 silly install resolved        'grunt-contrib-cssmin': '~0.9.0',
+34 silly install resolved        'grunt-contrib-jst': '~0.6.0',
+34 silly install resolved        'grunt-contrib-less': '0.11.1',
+34 silly install resolved        'grunt-contrib-uglify': '~0.4.0',
+34 silly install resolved        'grunt-contrib-watch': '~0.5.3',
+34 silly install resolved        'grunt-sails-linker': '~0.9.5',
+34 silly install resolved        'grunt-sync': '~0.0.4',
+34 silly install resolved        i18n: '~0.5.0',
+34 silly install resolved        'include-all': '~0.1.3',
+34 silly install resolved        lodash: '~2.4.1',
+34 silly install resolved        'merge-defaults': '~0.1.0',
+34 silly install resolved        'method-override': '~2.3.0',
+34 silly install resolved        'mock-req': '0.1.0',
+34 silly install resolved        'mock-res': '0.1.0',
+34 silly install resolved        'node-uuid': '~1.4.0',
+34 silly install resolved        pluralize: '~0.0.5',
+34 silly install resolved        prompt: '~0.2.13',
+34 silly install resolved        rc: '~0.5.0',
+34 silly install resolved        reportback: '~0.1.4',
+34 silly install resolved        'sails-build-dictionary': '~0.10.1',
+34 silly install resolved        'sails-disk': '~0.10.0',
+34 silly install resolved        'sails-generate': '~0.12.0',
+34 silly install resolved        'sails-hook-sockets': '^0.11.13',
+34 silly install resolved        'sails-stringfile': '~0.3.0',
+34 silly install resolved        'sails-util': '~0.10.3',
+34 silly install resolved        semver: '~2.2.1',
+34 silly install resolved        skipper: '~0.5.5',
+34 silly install resolved        'uid-safe': '^1.0.1',
+34 silly install resolved        waterline: '~0.10.17' },
+34 silly install resolved     devDependencies:
+34 silly install resolved      { 'root-require': '~0.2.0',
+34 silly install resolved        checksum: '~0.1.1',
+34 silly install resolved        request: '*',
+34 silly install resolved        istanbul: '*',
+34 silly install resolved        wrench: '~1.5.1',
+34 silly install resolved        benchmark: '~1.0.0',
+34 silly install resolved        microtime: '~0.6.0',
+34 silly install resolved        colors: '~0.6.2',
+34 silly install resolved        'expect.js': '~0.2.0',
+34 silly install resolved        should: '~2.1.1',
+34 silly install resolved        supertest: '~0.8.2',
+34 silly install resolved        mocha: '~1.17.1',
+34 silly install resolved        portfinder: '~0.2.1',
+34 silly install resolved        'coffee-script': '~1.7.1',
+34 silly install resolved        'socket.io-client': '^1.2.1' },
+34 silly install resolved     repository: { type: 'git', url: 'git://github.com/balderdashy/sails.git' },
+34 silly install resolved     licenses: [ [Object] ],
+34 silly install resolved     bugs: { url: 'http://github.com/balderdashy/sails/issues' },
+34 silly install resolved     engines: { node: '>= 0.10.0', npm: '>= 1.4.0' },
+34 silly install resolved     _id: 'sails@0.11.0',
+34 silly install resolved     dist:
+34 silly install resolved      { shasum: '3c106b2a66f55c72ad31edaa1b83fdad78e4938c',
+34 silly install resolved        tarball: 'http://registry.npmjs.org/sails/-/sails-0.11.0.tgz' },
+34 silly install resolved     _from: 'sails@*',
+34 silly install resolved     _npmVersion: '1.4.3',
+34 silly install resolved     _npmUser: { name: 'mikermcneil', email: 'michael.r.mcneil@gmail.com' },
+34 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+34 silly install resolved     _shasum: '3c106b2a66f55c72ad31edaa1b83fdad78e4938c',
+34 silly install resolved     _resolved: 'https://registry.npmjs.org/sails/-/sails-0.11.0.tgz',
+34 silly install resolved     readme: 'ERROR: No README data found!' } ]
+35 info install sails@0.11.0 into /Users/mchastain/.nvm/v0.10.40/lib
+36 info installOne sails@0.11.0
+37 verbose installOne of sails to /Users/mchastain/.nvm/v0.10.40/lib not in flight; installing
+38 verbose lock using /Users/mchastain/.npm/_locks/sails-e253558e06a630b8.lock for /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails
+39 silly install write writing sails 0.11.0 to /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails
+40 verbose unbuild lib/node_modules/sails
+41 info preuninstall sails@0.11.0
+42 info uninstall sails@0.11.0
+43 verbose unbuild rmStuff sails@0.11.0 from /Users/mchastain/.nvm/v0.10.40/lib/node_modules
+44 silly gentlyRm /Users/mchastain/.nvm/v0.10.40/bin/sails is being gently removed
+45 silly gentlyRm verifying /Users/mchastain/.nvm/v0.10.40 is an npm working directory
+46 silly gentlyRm containing path /Users/mchastain/.nvm/v0.10.40 is under npm's control, in /Users/mchastain/.nvm/v0.10.40
+47 silly gentlyRm deletion target /Users/mchastain/.nvm/v0.10.40/bin/sails is under /Users/mchastain/.nvm/v0.10.40
+48 verbose gentlyRm vacuuming from /Users/mchastain/.nvm/v0.10.40/bin/sails up to /Users/mchastain/.nvm/v0.10.40
+49 info postuninstall sails@0.11.0
+50 silly gentlyRm /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails is being purged from base /Users/mchastain/.nvm/v0.10.40
+51 verbose gentlyRm don't care about contents; nuking /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails
+52 silly vacuum-fs purging /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails
+53 verbose unlock done using /Users/mchastain/.npm/_locks/sails-e253558e06a630b8.lock for /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails
+54 verbose stack Error: EACCES, unlink '/Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore'
+55 verbose cwd /Users/mchastain/Desktop/node_tutorials/timekeeping
+56 error Darwin 14.5.0
+57 error argv "node" "/Users/mchastain/.nvm/v0.10.40/bin/npm" "-g" "install" "sails"
+58 error node v0.10.40
+59 error npm  v2.13.3
+60 error path /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore
+61 error code EACCES
+62 error errno 3
+63 error Error: EACCES, unlink '/Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore'
+63 error  { [Error: EACCES, unlink '/Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore']
+63 error   errno: 3,
+63 error   code: 'EACCES',
+63 error   path: '/Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore' }
+64 error Please try running this command again as root/Administrator.
+65 verbose exit [ 3, true ]
+66 verbose unbuild lib/node_modules/sails
+67 info preuninstall sails@0.11.0
+68 info uninstall sails@0.11.0
+69 verbose unbuild rmStuff sails@0.11.0 from /Users/mchastain/.nvm/v0.10.40/lib/node_modules
+70 silly gentlyRm /Users/mchastain/.nvm/v0.10.40/bin/sails is being gently removed
+71 silly gentlyRm verifying /Users/mchastain/.nvm/v0.10.40 is an npm working directory
+72 silly gentlyRm containing path /Users/mchastain/.nvm/v0.10.40 is under npm's control, in /Users/mchastain/.nvm/v0.10.40
+73 silly gentlyRm deletion target /Users/mchastain/.nvm/v0.10.40/bin/sails is under /Users/mchastain/.nvm/v0.10.40
+74 verbose gentlyRm vacuuming from /Users/mchastain/.nvm/v0.10.40/bin/sails up to /Users/mchastain/.nvm/v0.10.40
+75 info postuninstall sails@0.11.0
+76 silly gentlyRm /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails is being purged from base /Users/mchastain/.nvm/v0.10.40
+77 verbose gentlyRm don't care about contents; nuking /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails
+78 silly vacuum-fs purging /Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails
+79 error error rolling back Error: EACCES, unlink '/Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore'
+79 error error rolling back  { [Error: EACCES, unlink '/Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore']
+79 error error rolling back   errno: 3,
+79 error error rolling back   code: 'EACCES',
+79 error error rolling back   path: '/Users/mchastain/.nvm/v0.10.40/lib/node_modules/sails/.npmignore' }

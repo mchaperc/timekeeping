@@ -11,7 +11,8 @@
 		<li class="nav-item"><a href="#user/reports/1">Reports</a></li>
 	</ul>
 	<div class="nav-user">
-		<p class="nav-user-username">Matt Chastain</p>
+	{#contextDump/}
+		<p class="nav-user-username">{firstName} {lastName}</p>
 		<img src="http://mchaperc.github.io/portfolio/img/me.png" alt="" class="nav-user-avatar">
 		<ul class="nav-user-options">
 			<li class="nav-user-options-item settings"><a href="#">Settings</a></li>
