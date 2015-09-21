@@ -404,6 +404,46 @@
   background-color: #b4b4b4;
   color: #fafafa;
 }
+.pto-container .pto-info {
+  position: relative;
+}
+.pto-container .pto-info-visual {
+  position: absolute;
+  top: 3em;
+  width: 50%;
+}
+.pto-container .pto-info-dates-used {
+  position: absolute;
+  padding-left: 12%;
+  width: 50%;
+  right: 0;
+  top: 1.5em;
+}
+.pto-container .pto-info-dates-used h3 {
+  border-bottom: 2px solid #787878;
+  font-size: 1.5em;
+  font-weight: 300;
+  width: 40%;
+}
+.pto-container .pto-info-dates-used .pto-info-dates-used-list {
+  font-size: 1.3em;
+  font-weight: 300;
+  list-style-type: circle;
+}
+.pto-container .pto-info-dates-used .pto-info-dates-used-list li {
+  margin-top: .7em;
+}
+.pickmeup {
+  margin-bottom: 2em;
+  margin-top: 35%;
+  position: relative;
+  text-align: center;
+  border-radius: 0;
+  background-color: white;
+}
+.pickmeup .pmu-instance {
+  background-color: #323232;
+}
 
 * {
   box-sizing: border-box;
@@ -810,4 +850,44 @@
 .delete-confirm .delete-confirm-text .delete-confirm-cancel:hover {
   background-color: #b4b4b4;
   color: #fafafa;
+}
+.pto-container .pto-info {
+  position: relative;
+}
+.pto-container .pto-info-visual {
+  position: absolute;
+  top: 3em;
+  width: 50%;
+}
+.pto-container .pto-info-dates-used {
+  position: absolute;
+  padding-left: 12%;
+  width: 50%;
+  right: 0;
+  top: 1.5em;
+}
+.pto-container .pto-info-dates-used h3 {
+  border-bottom: 2px solid #787878;
+  font-size: 1.5em;
+  font-weight: 300;
+  width: 40%;
+}
+.pto-container .pto-info-dates-used .pto-info-dates-used-list {
+  font-size: 1.3em;
+  font-weight: 300;
+  list-style-type: circle;
+}
+.pto-container .pto-info-dates-used .pto-info-dates-used-list li {
+  margin-top: .7em;
+}
+.pickmeup {
+  margin-bottom: 2em;
+  margin-top: 35%;
+  position: relative;
+  text-align: center;
+  border-radius: 0;
+  background-color: white;
+}
+.pickmeup .pmu-instance {
+  background-color: #323232;
 }

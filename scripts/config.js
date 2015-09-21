@@ -12,7 +12,9 @@ require.config({
 		marionette: '../node_modules/backbone.marionette/lib/core/backbone.marionette',
 		'backbone.marionette.dust': '../node_modules/backbone.marionette.dust/src/backbone.marionette.dust',
 		slick: '../node_modules/slick-carousel/slick/slick',
-    	main: 'main'
+    	main: 'main',
+    	pickmeup: '../node_modules/pickmeup/pickmeup.min',
+    	highcharts: '../node_modules/highcharts/highcharts'
 	},
 	shim: {
 		'backbone': {

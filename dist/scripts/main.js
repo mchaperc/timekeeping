@@ -12,7 +12,9 @@ require.config({
 		marionette: '../node_modules/backbone.marionette/lib/core/backbone.marionette',
 		'backbone.marionette.dust': '../node_modules/backbone.marionette.dust/src/backbone.marionette.dust',
 		slick: '../node_modules/slick-carousel/slick/slick',
-    	main: 'main'
+    	main: 'main',
+    	pickmeup: '../node_modules/pickmeup/pickmeup.min',
+    	highcharts: '../node_modules/highcharts/highcharts'
 	},
 	shim: {
 		'backbone': {
@@ -2191,9 +2193,10 @@ define([
 		'views/index-footer',
 		'views/user-view',
 		'views/user-header',
-		'views/user-manage'
+		'views/user-manage',
+		'views/user-pto'
 		],
-	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage) {
+	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage, UserPTO) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
@@ -2213,6 +2216,9 @@ define([
 				if (Parse.User.current()) {
 					this.navigate('#user/manage/1', true);
 				} else {
+					if ($('.pickmeup')) {
+						$('.pickmeup').remove();
+					}
 					this.indexView = new IndexView();
 					this.app.getRegion('main').show(this.indexView);
 					this.indexView.showChildView('indexHeader', new HeaderView({router: this}));
@@ -2225,6 +2231,9 @@ define([
 				if (!Parse.User.current()) {
 					this.navigate('', true);
 				} else {
+					if ($('.pickmeup')) {
+						$('.pickmeup').remove();
+					}
 					this.userView = new UserView();
 					this.app.getRegion('main').show(this.userView);
 					this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
@@ -2240,12 +2249,19 @@ define([
 			},
 
 			pto: function(id) {
+				if ($('.pickmeup')) {
+					$('.pickmeup').remove();
+				}
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
-				this.userView.showChildView('userHeader', new UserHeader());
+				this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
+				this.userView.showChildView('userContent', new UserPTO({model: Parse.User.current(), router: this}));
 			},
 
 			reports: function(id) {
+				if ($('.pickmeup')) {
+					$('.pickmeup').remove();
+				}
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
 				this.userView.showChildView('userHeader', new UserHeader());
@@ -2254,30 +2270,6 @@ define([
 		});
 	}
 )
-define([
-		'backbone', 
-		'marionette'
-		], 
-	function(Backbone, Marionette) {
-		return Task = Backbone.Model.extend({
-			idAttribute: '_id',
-			urlRoot: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
-			defaults: {
-				task: 'N/A',
-				project: 'N/A',
-				time: '00:00:00'
-			}
-		})
-})
-define(['backbone', 'marionette', '../models/taskModel'],
-	function(Backbone, Marionette, TaskModel) {
-		var TasksCollection = Backbone.Collection.extend({
-			model: TaskModel,
-			url: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
-			comparator: 'project'
-		});
-		return TasksCollection;
-})
 define([
 		'backbone',
 		'marionette',
@@ -2707,6 +2699,72 @@ define([
 		'backbone',
 		'marionette',
 		'backbone.marionette.dust',
+		'templates',
+		'pickmeup',
+		'highcharts'
+		],
+	function(Backbone, Marionette, dustMarionette, templates, pickmeup, highcharts) {
+		return UserPTO = Marionette.ItemView.extend({
+			template: 'pto.dust',
+			className: 'pto-container',
+			initialize: function() {
+				this.model.ptoTaken = this.model.get('ptoTaken');
+				console.log(this.model);
+			},
+			onRender: function() {
+				var self = this;
+				console.log(this.model.get('totalPTO'));
+				setTimeout(function() {
+					$('.pto-container').pickmeup({
+						calendars: 12,
+						select_year: false,
+						min: '01/01/2015',
+						max: '12/31/2015'
+					});
+					$('.pto-container').pickmeup('show');
+					$('.pto-info-visual').highcharts({
+						chart: {
+				            type: 'pie'
+				        },
+				        title: {
+				            text: 'Paid Time Off'
+				        },
+				        subtitle: {
+				            text: 'break down'
+				        },
+				        plotOptions: {
+				            pie: {
+				                innerSize: 100,
+				                depth: 45
+				            }
+				        },
+				        series: [{
+				            name: 'Days',
+				            data: [
+				                ['Total PTO', self.model.get('totalPTO')],
+				                ['PTO Used', self.model.get('ptoTaken').length],
+				                ['Remaining PTO', (self.model.get('totalPTO') - self.model.get('ptoTaken').length)]
+				            ]
+				        }]
+					})
+					$('.pmu-button').on('click', function() {
+						var parent = $(this).parent().siblings($('.pmu-months')).text();
+						var index = parent.indexOf(',') - 1;
+						parent = parent.split('');
+						parent = parent.splice(1, index);
+						console.log(parent.join(''));
+					});
+				}, 1);
+				$(document).ready(function() {
+
+				})
+			}
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
 		'templates'
 		],
 	function(Backbone, Marionette, dustMarionette, templates) {
@@ -2719,4 +2777,28 @@ define([
 			}
 		})
 	})
+define([
+		'backbone', 
+		'marionette'
+		], 
+	function(Backbone, Marionette) {
+		return Task = Backbone.Model.extend({
+			idAttribute: '_id',
+			urlRoot: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
+			defaults: {
+				task: 'N/A',
+				project: 'N/A',
+				time: '00:00:00'
+			}
+		})
+})
+define(['backbone', 'marionette', '../models/taskModel'],
+	function(Backbone, Marionette, TaskModel) {
+		var TasksCollection = Backbone.Collection.extend({
+			model: TaskModel,
+			url: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
+			comparator: 'project'
+		});
+		return TasksCollection;
+})
 //# sourceMappingURL=main.js.map

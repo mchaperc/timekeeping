@@ -7,9 +7,10 @@ define([
 		'views/index-footer',
 		'views/user-view',
 		'views/user-header',
-		'views/user-manage'
+		'views/user-manage',
+		'views/user-pto'
 		],
-	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage) {
+	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage, UserPTO) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
@@ -29,6 +30,9 @@ define([
 				if (Parse.User.current()) {
 					this.navigate('#user/manage/1', true);
 				} else {
+					if ($('.pickmeup')) {
+						$('.pickmeup').remove();
+					}
 					this.indexView = new IndexView();
 					this.app.getRegion('main').show(this.indexView);
 					this.indexView.showChildView('indexHeader', new HeaderView({router: this}));
@@ -41,6 +45,9 @@ define([
 				if (!Parse.User.current()) {
 					this.navigate('', true);
 				} else {
+					if ($('.pickmeup')) {
+						$('.pickmeup').remove();
+					}
 					this.userView = new UserView();
 					this.app.getRegion('main').show(this.userView);
 					this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
@@ -56,12 +63,19 @@ define([
 			},
 
 			pto: function(id) {
+				if ($('.pickmeup')) {
+					$('.pickmeup').remove();
+				}
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
-				this.userView.showChildView('userHeader', new UserHeader());
+				this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
+				this.userView.showChildView('userContent', new UserPTO({model: Parse.User.current(), router: this}));
 			},
 
 			reports: function(id) {
+				if ($('.pickmeup')) {
+					$('.pickmeup').remove();
+				}
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
 				this.userView.showChildView('userHeader', new UserHeader());

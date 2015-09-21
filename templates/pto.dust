@@ -1,0 +1,12 @@
+
+<div class="pto-info">
+	<div class="pto-info-visual"></div>	
+	<div class="pto-info-dates-used">
+		<h3 class="pto-info-dates-used-header">Dates Used:</h3>
+		<ul class="pto-info-dates-used-list">
+			{#ptoTaken}
+				<li class="pto-info-dates-used-item">{date}</li>
+			{/ptoTaken}
+		</ul>
+	</div>
+</div>

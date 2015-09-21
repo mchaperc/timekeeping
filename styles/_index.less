@@ -403,3 +403,47 @@
 		}
 	}
 }
+
+.pto-container {
+	.pto-info {
+		position: relative;
+	}
+	.pto-info-visual {
+		position: absolute;
+		top: 3em;
+		width: 50%;
+	}
+	.pto-info-dates-used {
+		position: absolute;
+		padding-left: 12%;
+		width: 50%;
+		right: 0;
+		top: 1.5em;
+		h3 {
+			border-bottom: 2px solid @gray;
+			font-size: 1.5em;
+			font-weight: 300;
+			width: 40%;
+		}
+		.pto-info-dates-used-list {
+			font-size: 1.3em;
+			font-weight: 300;
+			list-style-type: circle;
+			li {
+				margin-top: .7em;
+			}
+		}
+	}
+}
+
+.pickmeup {
+	margin-bottom: 2em;
+	margin-top: 35%;
+	position: relative;
+	text-align: center;
+	border-radius: 0;
+	background-color: white;
+	.pmu-instance {
+		background-color: @black;
+	}
+}
