@@ -2238,7 +2238,6 @@ define([
 					this.userView = new UserView();
 					this.app.getRegion('main').show(this.userView);
 					this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
-					$('.navbar-center a:first-child').addClass('active');
 					this.userView.showChildView('userContent', new UserManage());
 				}
 			},
@@ -2562,9 +2561,10 @@ define([
 		'backbone',
 		'marionette',
 		'backbone.marionette.dust',
-		'templates'
+		'templates',
+		'./user-manage-existing'
 		],
-	function(Backbone, Marionette, dustMarionette, templates) {
+	function(Backbone, Marionette, dustMarionette, templates, ManageExisting) {
 		return ExistingItemView = Marionette.ItemView.extend({
 			template: 'existing-task-item.dust',
 			className: 'existing-item-container',
@@ -2580,11 +2580,9 @@ define([
 				'click .cancel-changes': 'cancelChanges'
 			},
 
+			collection: ManageExisting,
+
 			initialize: function() {
-				var tasks = Parse.User.current().get('tasks') || [];
-				var match = _.filter(tasks, function(task) {
-					return task.id === this.model.get('id');
-				}.bind(this));
 				this.listenTo(this.model, 'change', this.render);
 			},
 
@@ -2601,7 +2599,13 @@ define([
 
 			deleteItem: function(e) {
 				e.preventDefault();
-				this.model.destroy();
+				var tasks = Parse.User.current().get('tasks');
+				tasks = _.filter(tasks, function(task) {
+					return task.id !== this.model.id;
+				}.bind(this));
+				Parse.User.current().set('tasks', tasks);
+				Parse.User.current().save();
+				this.remove();
 				$('.delete-confirm').hide();
 			},
 
@@ -2667,7 +2671,14 @@ define([
 				var projectName = this.$('input.task-item-project').val() || this.model.get('project');
 				var time = this.$('input.task-item-time').val() || this.model.get('time');
 				this.model.set({task: taskName, project: projectName, time: time});
-				this.model.save();
+				var edited = {task: taskName, project: projectName, time: time, id: this.model.get('id')};
+				var tasks = Parse.User.current().get('tasks');
+				var filteredTasks = _.filter(tasks, function(task) {
+					return task.id !== edited.id;
+				}.bind(this));
+				filteredTasks.push(edited);
+				Parse.User.current().set('tasks', filteredTasks);
+				Parse.User.current().save();
 				$('.edit').hide();
 				$('.display').show();
 			},
