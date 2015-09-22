@@ -3,6 +3,7 @@
 	<i class="fa fa-angle-double-down fa-3x"></i>
 	<i class="fa fa-angle-double-up fa-3x"></i>
 	<div class="analysis-item-content">
-		<div class="analysis-item-content-chart"></div>
+		<div class="analysis-item-content-chart chart-1"></div>
+		<div class="analysis-item-content-chart chart-2"></div>
 	</div>
 </div>
