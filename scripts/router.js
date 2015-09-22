@@ -8,17 +8,18 @@ define([
 		'views/user-view',
 		'views/user-header',
 		'views/user-manage',
-		'views/user-pto'
+		'views/user-pto',
+		'views/user-reports'
 		],
-	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage, UserPTO) {
+	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage, UserPTO, UserReports) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
 				'': 'index',
-				'user/manage/calendar/:id': 'calendar',
-				'user/manage/:id': 'manage',
-				'user/pto/:id': 'pto',
-				'user/reports/:id': 'reports'
+				'user/manage/calendar': 'calendar',
+				'user/manage': 'manage',
+				'user/pto': 'pto',
+				'user/reports': 'reports'
 			},
 
 			initialize: function(app) {
@@ -28,7 +29,7 @@ define([
 
 			index: function(id) {
 				if (Parse.User.current()) {
-					this.navigate('#user/manage/1', true);
+					this.navigate('#user/manage', true);
 				} else {
 					if ($('.pickmeup')) {
 						$('.pickmeup').remove();
@@ -56,29 +57,31 @@ define([
 				}
 			},
 
-			calendar: function(id) {
+			calendar: function() {
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
 				this.userView.showChildView('userHeader', new UserHeader());
 			},
 
-			pto: function(id) {
-				if ($('.pickmeup')) {
-					$('.pickmeup').remove();
-				}
+			pto: function() {
+				
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
 				this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
 				this.userView.showChildView('userContent', new UserPTO({model: Parse.User.current(), router: this}));
 			},
 
-			reports: function(id) {
+			reports: function() {
 				if ($('.pickmeup')) {
 					$('.pickmeup').remove();
 				}
-				this.userView = new UserView();
-				this.app.getRegion('main').show(this.userView);
-				this.userView.showChildView('userHeader', new UserHeader());
+				Parse.User.current().fetch().then(function(user) {
+					var reports = new Backbone.Collection(user.get('reports'));
+					this.userView = new UserView();
+					this.app.getRegion('main').show(this.userView);
+					this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
+					this.userView.showChildView('userContent', new UserReports({collection: reports, model: user}));
+				}.bind(this));
 			}
 
 		});

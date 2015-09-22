@@ -6,9 +6,9 @@
 		</a>
 	</div>
 	<ul class="nav navbar-nav navbar-inverse navbar-center">
-		<li class="nav-item"><a href="#user/manage/1">Manage</a></li>
-		<li class="nav-item"><a href="#user/pto/1">PTO</a></li>
-		<li class="nav-item"><a href="#user/reports/1">Reports</a></li>
+		<li class="nav-item"><a href="#user/manage">Manage</a></li>
+		<li class="nav-item"><a href="#user/pto">PTO</a></li>
+		<li class="nav-item"><a href="#user/reports">Reports</a></li>
 	</ul>
 	<div class="nav-user">
 		<p class="nav-user-username">{firstName} {lastName}</p>

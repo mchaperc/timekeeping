@@ -48,7 +48,7 @@
 			<input type="text" class="register-modal-form-input-last-name" required>
 			<label class="register-modal-form-label">Password</label>
 			<input type="password" class="register-modal-form-input-password" required>
-			<button class="register-submit">Register</button>
+			<button class="register-submit submit">Register</button>
 		</form>
 		<div class="register-modal-help">
 			<h3 class="register-modal-help-header">Already have an account?</h3>
@@ -71,8 +71,8 @@
 			<label class="login-modal-form-label">Email</label>
 			<input type="text" class="login-modal-form-input-email" required autofocus>
 			<label class="login-modal-form-label">Password</label>
-			<input type="text" class="login-modal-form-input-password" required>
-			<button class="login-submit">Login</button>
+			<input type="password" class="login-modal-form-input-password" required>
+			<button class="login-submit submit">Login</button>
 		</form>
 		<div class="login-modal-help">
 			<h3 class="login-modal-help-header">Need help logging in?</h3>

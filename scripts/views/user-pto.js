@@ -12,14 +12,12 @@ define([
 			className: 'pto-container',
 			initialize: function() {
 				this.model.ptoTaken = this.model.get('ptoTaken');
-				console.log(this.model);
 			},
 			onRender: function() {
 				var self = this;
-				console.log(this.model.get('totalPTO'));
 				setTimeout(function() {
 					$('.pto-container').pickmeup({
-						calendars: 12,
+						calendars: 3,
 						select_year: false,
 						min: '01/01/2015',
 						max: '12/31/2015'

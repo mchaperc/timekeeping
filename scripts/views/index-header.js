@@ -39,7 +39,7 @@ define([
 				var password = $('.login-modal-form-input-password').val();
 				Parse.User.logIn(username, password, {
 					success: function(user) {
-						self.router.navigate('#user/manage/' + user.id, true);
+						self.router.navigate('#user/manage', true);
 					},
 					error: function(user, error) {
 						console.log('user:', user, 'error:', error);

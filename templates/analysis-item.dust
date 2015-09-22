@@ -1,0 +1,8 @@
+<div class="analysis-item-container {containerClass}">
+	<h3 class="analysis-item-header">{reportType}</h3>
+	<i class="fa fa-angle-double-down fa-3x"></i>
+	<i class="fa fa-angle-double-up fa-3x"></i>
+	<div class="analysis-item-content">
+		<div class="analysis-item-content-chart"></div>
+	</div>
+</div>

@@ -2194,17 +2194,18 @@ define([
 		'views/user-view',
 		'views/user-header',
 		'views/user-manage',
-		'views/user-pto'
+		'views/user-pto',
+		'views/user-reports'
 		],
-	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage, UserPTO) {
+	function(Marionette, Backbone, IndexView, HeaderView, FeatureView, FooterView, UserView, UserHeader, UserManage, UserPTO, UserReports) {
 		return router = Marionette.AppRouter.extend({
 			
 			routes: {
 				'': 'index',
-				'user/manage/calendar/:id': 'calendar',
-				'user/manage/:id': 'manage',
-				'user/pto/:id': 'pto',
-				'user/reports/:id': 'reports'
+				'user/manage/calendar': 'calendar',
+				'user/manage': 'manage',
+				'user/pto': 'pto',
+				'user/reports': 'reports'
 			},
 
 			initialize: function(app) {
@@ -2214,7 +2215,7 @@ define([
 
 			index: function(id) {
 				if (Parse.User.current()) {
-					this.navigate('#user/manage/1', true);
+					this.navigate('#user/manage', true);
 				} else {
 					if ($('.pickmeup')) {
 						$('.pickmeup').remove();
@@ -2242,34 +2243,116 @@ define([
 				}
 			},
 
-			calendar: function(id) {
+			calendar: function() {
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
 				this.userView.showChildView('userHeader', new UserHeader());
 			},
 
-			pto: function(id) {
-				if ($('.pickmeup')) {
-					$('.pickmeup').remove();
-				}
+			pto: function() {
+				
 				this.userView = new UserView();
 				this.app.getRegion('main').show(this.userView);
 				this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
 				this.userView.showChildView('userContent', new UserPTO({model: Parse.User.current(), router: this}));
 			},
 
-			reports: function(id) {
+			reports: function() {
 				if ($('.pickmeup')) {
 					$('.pickmeup').remove();
 				}
-				this.userView = new UserView();
-				this.app.getRegion('main').show(this.userView);
-				this.userView.showChildView('userHeader', new UserHeader());
+				Parse.User.current().fetch().then(function(user) {
+					var reports = new Backbone.Collection(user.get('reports'));
+					this.userView = new UserView();
+					this.app.getRegion('main').show(this.userView);
+					this.userView.showChildView('userHeader', new UserHeader({model: Parse.User.current(), router: this}));
+					this.userView.showChildView('userContent', new UserReports({collection: reports, model: user}));
+				}.bind(this));
 			}
 
 		});
 	}
 )
+[
+	{
+		"reportType": "Hours Analysis",
+		"items": [],
+		"containerClass": "hours"
+	},
+	{
+		"reportType": "PTO Analysis",
+		"items": [],
+		"containerClass": "pto"
+	},
+	{
+		"reportType": "Tasks Analysis",
+		"items": [],
+		"containerClass": "tasks"
+	}
+]
+define(['backbone', 'marionette', '../models/taskModel'],
+	function(Backbone, Marionette, TaskModel) {
+		var TasksCollection = Backbone.Collection.extend({
+			model: TaskModel,
+			url: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
+			comparator: 'project'
+		});
+		return TasksCollection;
+})
+define([
+		'backbone', 
+		'marionette'
+		], 
+	function(Backbone, Marionette) {
+		return Task = Backbone.Model.extend({
+			idAttribute: '_id',
+			urlRoot: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
+			defaults: {
+				task: 'N/A',
+				project: 'N/A',
+				time: '00:00:00'
+			}
+		})
+})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
+		'templates'
+		],
+	function(Backbone, Marionette, dustMarionette, templates) {
+		return AnalysisItem = Marionette.ItemView.extend({
+			template: 'analysis-item.dust',
+			className: 'analysis-container',
+			events: {
+				'click .fa-angle-double-down': 'expandReport',
+				'click .fa-angle-double-up': 'expandReport'
+			},
+			onRender: function() {
+				if (this.model.get('reportType') === 'Hours Analysis') {
+					this.hours();
+				} else if (this.model.get('reportType') === 'PTO Analysis') {
+					this.pto();
+				} else if (this.model.get('reportType') === 'Tasks Analysis') {
+					this.tasks();
+				}
+			},
+			expandReport: function() {
+				this.$('.analysis-item-content').toggle();
+				this.$('.fa-angle-double-down').toggle();
+				this.$('.fa-angle-double-up').toggle();
+			},
+			hours: function() {
+				console.log('hours');
+			},
+			pto: function() {
+				console.log('pto');
+			},
+			tasks: function() {
+				console.log('tasks');
+			}
+		})
+	})
 define([
 		'backbone',
 		'marionette',
@@ -2363,7 +2446,7 @@ define([
 				var password = $('.login-modal-form-input-password').val();
 				Parse.User.logIn(username, password, {
 					success: function(user) {
-						self.router.navigate('#user/manage/' + user.id, true);
+						self.router.navigate('#user/manage', true);
 					},
 					error: function(user, error) {
 						console.log('user:', user, 'error:', error);
@@ -2709,14 +2792,12 @@ define([
 			className: 'pto-container',
 			initialize: function() {
 				this.model.ptoTaken = this.model.get('ptoTaken');
-				console.log(this.model);
 			},
 			onRender: function() {
 				var self = this;
-				console.log(this.model.get('totalPTO'));
 				setTimeout(function() {
 					$('.pto-container').pickmeup({
-						calendars: 12,
+						calendars: 3,
 						select_year: false,
 						min: '01/01/2015',
 						max: '12/31/2015'
@@ -2765,6 +2846,25 @@ define([
 		'backbone',
 		'marionette',
 		'backbone.marionette.dust',
+		'templates',
+		'./analysis-item'
+		],
+	function(Backbone, Marionette, dustMarionette, templates, analysisItem) {
+		return UserReports = Marionette.CollectionView.extend({
+			template: 'reports.dust',
+			className: 'reports-container',
+			regions: {
+				'hoursAnalysis': '.hours-analysis-container',
+				'ptoAnalysis': '.pto-analysis-container',
+				'taskAnalysis': '.task-analysis-container'
+			},
+			childView: analysisItem
+		})
+	})
+define([
+		'backbone',
+		'marionette',
+		'backbone.marionette.dust',
 		'templates'
 		],
 	function(Backbone, Marionette, dustMarionette, templates) {
@@ -2777,28 +2877,4 @@ define([
 			}
 		})
 	})
-define([
-		'backbone', 
-		'marionette'
-		], 
-	function(Backbone, Marionette) {
-		return Task = Backbone.Model.extend({
-			idAttribute: '_id',
-			urlRoot: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
-			defaults: {
-				task: 'N/A',
-				project: 'N/A',
-				time: '00:00:00'
-			}
-		})
-})
-define(['backbone', 'marionette', '../models/taskModel'],
-	function(Backbone, Marionette, TaskModel) {
-		var TasksCollection = Backbone.Collection.extend({
-			model: TaskModel,
-			url: 'http://tiny-lasagna-server.herokuapp.com/collections/mytasks',
-			comparator: 'project'
-		});
-		return TasksCollection;
-})
 //# sourceMappingURL=main.js.map
